@@ -7,4 +7,4 @@ Les données sont regroupées par colonnes dans un tableau et sont au format csv
 <h1>But</h1>
 <p>Notre but avec ce travail est d'explorer le monde de League of Legends, ainsi que ses personnages et les stratégies du jeu afin de permettre à nos utilisateurs de se plonger dans l'unviers de ce jeu. Nous voulons nous baser sur les statistiques du jeu par saison. Une année équivaut à une saison sur le jeu. Chaque semaine le jeu est mis à jour et selon les personnages et les rôles il y'a différentes manières de jouer. Nous allons donc également parler des tendances du jeu.</p>
 <h1>Références</h1>
-<p>Riot Games, les créateurs du jeu possèdent toutes les données concernant le jeu. Il y'a aussi wiki qui a une page concernant league of legends et ses personnages. Pour Riot games, ses données sont importantes pour faire évoluer le jeu et rester à jour. Sur wiki, le but est simplement d'informer</p>
+<p>Ces données ont été faite en collaboration avec 10 personnes. Il y'a plus de 1870 téléchargements de ces données. </p>

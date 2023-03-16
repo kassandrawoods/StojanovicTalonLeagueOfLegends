@@ -13,5 +13,5 @@ Les données sont regroupées par colonnes dans un tableau et sont au format csv
 <li>https://www.kaggle.com/code/andycheung0211/lol-stats - Andy Cheung : permet de savoir les pourcentages des rôles le plus joué</li>
 <li>https://www.kaggle.com/code/benjivdm/under-the-radar-league-of-legends-visualizer - BENJAMIN JAMES VAN DER MERWE : analyse les données
 </p>
-<img href='./wireframe1'/>
+
 

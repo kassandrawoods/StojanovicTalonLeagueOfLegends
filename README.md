@@ -14,6 +14,7 @@ Les données sont regroupées par colonnes dans un tableau et sont au format csv
 <li>https://www.kaggle.com/code/benjivdm/under-the-radar-league-of-legends-visualizer - BENJAMIN JAMES VAN DER MERWE : analyse les données
 </p>
 <h1>Wireframe</h1>
-[Wireframe](wireframe_lol.pdf)
+[wireframe_lol.pdf](https://github.com/kassandrawoods/StojanovicTalonLeagueOfLegends/files/10989208/wireframe_lol.pdf)
+
 
 

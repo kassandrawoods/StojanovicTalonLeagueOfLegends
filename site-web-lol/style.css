@@ -1,0 +1,81 @@
+body, html {
+    background-color:#120640;
+    height: 100%;
+    margin: 0;
+}
+
+#background {
+    display : flex;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('img/img-accueil-1.jpg');
+    height: 100%;
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.accueil {
+    display : flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+
+h1, h2, h3, h4, p {
+    color: white;
+    text-align: center;
+
+}
+
+.frame1 {
+    display : flex;
+    width : 100%;
+    height: 100%;
+}
+
+.frameMap {
+    display : flex;
+    width : 100%;
+    height: 100%;
+}
+
+.contenu {
+    width: 50%;
+    display : flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
+button.role{
+    background-color: #8B41F2; color: white; 
+    border : none;
+    padding: 14px 14px;
+    font-size: 16px;
+    border-radius: 12px;
+}
+
+button.role:hover{
+    box-shadow: 0 6px 16px 0 rgba(255,255,255,0.24), 0 17px 50px 0 rgba(255,255,255,0.19);
+}
+
+button.map{
+display: flex;
+justify-content: center;
+margin-left: auto;
+margin-right: auto;
+ background-color: #8B41F2; color: white; 
+ border : none;
+ padding: 14px 14px;
+ width: 50%;
+ font-size: 16px;
+ border-radius: 12px;
+}
+
+button.map:hover {
+    box-shadow: 0 6px 16px 0 rgba(255,255,255,0.24), 0 17px 50px 0 rgba(255,255,255,0.19);
+  }

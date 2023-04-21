@@ -1,5 +1,9 @@
 @font-family Beaufort for LOL {
-    src: url('fonts/BeaufortLol-BoldItalic.ttf') format('truetype')
+    src: url('font/BeaufortLol-BoldItalic.ttf') format('truetype')
+}
+
+@font-family Spiegel {
+    src: url('font/Spiegel-Regular.ttf') format('truetype')
 }
 
 body, html {

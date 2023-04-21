@@ -1,5 +1,9 @@
+// -------------------- IMPPORT --------------------
+
 import * as d3 from "d3";
 import { csv } from "d3-fetch";
+
+// -------------------- DOM --------------------
 
 const btnAdc = document.querySelector("#adc");
 const btnSupport = document.querySelector("#support");
@@ -57,51 +61,78 @@ des sorts de balises et en prenant des objectifs stratégiques tels que les tour
  des dégâts massifs à l'ennemi. Le top est un rôle important qui nécessite des compétences en matière de combat, de stratégie et de 
  mouvement pour aider son équipe à remporter la victoire.<button class="map" type="button"><a href='#frameStat'><span>Découvrir les stats</span></a></button>`;
 
-//boutons roles
-btnAdc.addEventListener("click", () => {
-  btnAdc.style.backgroundColor = "rgb(11, 150, 227)";
-  textExplication.innerHTML = textADC;
-  btnSupport.style.backgroundColor = "rgb(11, 198, 227)";
-  btnJungle.style.backgroundColor = "rgb(11, 198, 227)";
-  btnMid.style.backgroundColor = "rgb(11, 198, 227)";
-  btnTop.style.backgroundColor = "rgb(11, 198, 227)";
-});
+ const textExplicationRetourBouton = `Il y a cinq rôles principaux dans League of Legends :<br>
 
-btnSupport.addEventListener("click", () => {
-  btnSupport.style.backgroundColor = "rgb(11, 150, 227)";
-  textExplication.innerHTML = textSupport;
-  btnAdc.style.backgroundColor = "rgb(11, 198, 227)";
-  btnJungle.style.backgroundColor = "rgb(11, 198, 227)";
-  btnMid.style.backgroundColor = "rgb(11, 198, 227)";
-  btnTop.style.backgroundColor = "rgb(11, 198, 227)";
-});
+     <br><strong>Top</strong> : placé sur la voie supérieure, le top doit affronter l'adversaire direct et aider son équipe en contrôlant la carte et en prenant des objectifs stratégiques.<br>
+     
+     <br><strong>Jungle</strong> : parcourt la jungle pour tuer les monstres neutres, aider ses coéquipiers à gagner leur lane, contrôler la carte et prendre des objectifs stratégiques.<br>
+     
+     <br><strong>Mid</strong> : placé au centre de la carte, le mid doit aider son équipe en infligeant des dégâts massifs à l'ennemi, en contrôlant la carte et en prenant des objectifs stratégiques.<br>
+     
+     <br><strong>ADC</strong> : placé dans la voie du bas avec le support, l'ADC est un tireur qui inflige des dégâts à distance à l'ennemi et doit être protégé par son support pour maximiser ses dégâts.<br>
+     
+     <br><strong>Support</strong> : placé dans la voie du bas avec l'ADC, le support aide l'équipe en fournissant des soins, des boucliers et des contrôles de foule à ses coéquipiers, en contrôlant la carte et en aidant à prendre des objectifs stratégiques`
 
-btnMid.addEventListener("click", () => {
-  btnMid.style.backgroundColor = "rgb(11, 150, 227)";
-  textExplication.innerHTML = textMid;
-  btnAdc.style.backgroundColor = "rgb(11, 198, 227)";
-  btnJungle.style.backgroundColor = "rgb(11, 198, 227)";
-  btnSupport.style.backgroundColor = "rgb(11, 198, 227)";
-  btnTop.style.backgroundColor = "rgb(11, 198, 227)";
-});
+     // -------------------- BOUTONS ROLE --------------------
 
-btnJungle.addEventListener("click", () => {
-  btnJungle.style.backgroundColor = "rgb(11, 150, 227)";
-  textExplication.innerHTML = textJungle;
-  btnAdc.style.backgroundColor = "rgb(11, 198, 227)";
-  btnSupport.style.backgroundColor = "rgb(11, 198, 227)";
-  btnMid.style.backgroundColor = "rgb(11, 198, 227)";
-  btnTop.style.backgroundColor = "rgb(11, 198, 227)";
-});
-
-btnTop.addEventListener("click", () => {
-  btnTop.style.backgroundColor = "rgb(11, 150, 227)";
-  textExplication.innerHTML = textTop;
-  btnAdc.style.backgroundColor = "rgb(11, 198, 227)";
-  btnJungle.style.backgroundColor = "rgb(11, 198, 227)";
-  btnMid.style.backgroundColor = "rgb(11, 198, 227)";
-  btnSupport.style.backgroundColor = "rgb(11, 198, 227)";
-});
+     let isExpanded = false;
+     let previousButton = null;
+     
+     const expandButton = (button, text) => {
+       button.style.backgroundColor = "rgb(11, 150, 227)";
+       textExplication.innerHTML = text;
+       if (previousButton !== null) {
+         previousButton.style.backgroundColor = "rgb(11, 198, 227)";
+       }
+       previousButton = button;
+       isExpanded = true;
+     };
+     
+     const resetButton = (button, text) => {
+       button.style.backgroundColor = "rgb(11, 198, 227)";
+       textExplication.innerHTML = text;
+       isExpanded = false;
+     };
+     
+     btnAdc.addEventListener("click", () => {
+       if (!isExpanded) {
+         expandButton(btnAdc, textADC);
+       } else {
+         resetButton(btnAdc, textExplicationRetourBouton);
+       }
+     });
+     
+     btnSupport.addEventListener("click", () => {
+       if (!isExpanded) {
+         expandButton(btnSupport, textSupport);
+       } else {
+         resetButton(btnSupport, textExplicationRetourBouton);
+       }
+     });
+     
+     btnMid.addEventListener("click", () => {
+       if (!isExpanded) {
+         expandButton(btnMid, textMid);
+       } else {
+         resetButton(btnMid, textExplicationRetourBouton);
+       }
+     });
+     
+     btnTop.addEventListener("click", () => {
+       if (!isExpanded) {
+         expandButton(btnTop, textTop);
+       } else {
+         resetButton(btnTop, textExplicationRetourBouton);
+       }
+     });
+     
+     btnJungle.addEventListener("click", () => {
+       if (!isExpanded) {
+         expandButton(btnJungle, textJungle);
+       } else {
+         resetButton(btnJungle, textExplicationRetourBouton);
+       }
+     });     
 
 //while hover on map gets bigger
 map.addEventListener("mouseover", () => {
@@ -114,6 +145,10 @@ map.addEventListener("mouseout", () => {
   map.style.transform = "scale(1)";
   map.style.transition = "all 0.5s";
 });
+
+// -------------------- DATA --------------------
+// -------------------- DATA --------------------
+// -------------------- DATA --------------------
 
 csv("/data/League of Legends Champion Stats 12.23.csv")
   .then(function (data) {
@@ -133,6 +168,8 @@ csv("/data/League of Legends Champion Stats 12.23.csv")
 
     return data;
   })
+
+  // -------------------- DATA GRAPHIQUE CAMEMBERT --------------------
 
   .then(function (cleanData) {
     console.log(cleanData);
@@ -162,6 +199,8 @@ csv("/data/League of Legends Champion Stats 12.23.csv")
     const prcMid = Math.round((nbMid / totRole) * 100);
     const prcSupport = Math.round((nbSupport / totRole) * 100);
 
+    // -------------------- GRAPHIQUE CAMEMBERT --------------------
+
     var data = [
       { label: "ADC", value: prcAdc },
       { label: "Support", value: prcSupport },
@@ -179,11 +218,11 @@ csv("/data/League of Legends Champion Stats 12.23.csv")
     var color = d3
       .scaleOrdinal()
       .range([
-        "rgb(11, 30, 227)",
-        "rgb(11, 100, 227)",
-        "rgb(11, 150, 227)",
-        "rgb(11, 50, 227)",
-        "rgb(11, 198, 227)",
+        "#044040",
+        "#308C83",
+        "#025940",
+        "#62A632",
+        "#457324",
       ]);
 
     // Création de l'élément SVG pour le graphique

@@ -1,8 +1,10 @@
-@font-family Beaufort for LOL {
+@font-face  {
+    font-family : 'Beaufort for LOL';
     src: url('font/BeaufortLol-BoldItalic.ttf') format('truetype')
 }
 
-@font-family Spiegel {
+@font-face {
+    font-family : 'Spiegel';
     src: url('font/Spiegel-Regular.ttf') format('truetype')
 }
 

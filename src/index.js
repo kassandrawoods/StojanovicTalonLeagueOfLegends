@@ -107,7 +107,8 @@ csv("/data/League of Legends Champion Stats 12.23.csv")
         (d.WinPerc = +d.WinPerc),
         (d.Trend = +d.Trend),
         (d.KDA = +d.KDA),
-        (d.Score = +d.Score)
+        (d.Score = +d.Score),
+        (d.Role = +d.Role)
       )
     );
 

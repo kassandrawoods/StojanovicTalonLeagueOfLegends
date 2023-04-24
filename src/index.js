@@ -132,7 +132,9 @@ des sorts de balises et en prenant des objectifs stratégiques tels que les tour
        } else {
          resetButton(btnJungle, textExplicationRetourBouton);
        }
-     });     
+     });
+
+ // -------------------- BOUTONS ANIMATIONS --------------------
 
 //while hover on map gets bigger
 map.addEventListener("mouseover", () => {

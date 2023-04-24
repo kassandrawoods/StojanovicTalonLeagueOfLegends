@@ -1,12 +1,11 @@
 @font-face  {
     font-family : 'Beaufort for LOL';
-    src: url('font/BeaufortLol-BoldItalic.ttf') format('truetype')
-}
+    src: url("//db.onlinewebfonts.com/t/12420e8c141ca7c3dff41de2d59df13e.eot"); src: url("//db.onlinewebfonts.com/t/12420e8c141ca7c3dff41de2d59df13e.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/12420e8c141ca7c3dff41de2d59df13e.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/12420e8c141ca7c3dff41de2d59df13e.woff") format("woff"), url("//db.onlinewebfonts.com/t/12420e8c141ca7c3dff41de2d59df13e.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/12420e8c141ca7c3dff41de2d59df13e.svg#BeaufortforLOL-Bold") format("svg"); }
 
-@font-face {
+/* @font-face {
     font-family : 'Spiegel';
     src: url('font/Spiegel-Regular.ttf') format('truetype')
-}
+} */
 
 body, html {
     font-family: 'Spiegel' ;

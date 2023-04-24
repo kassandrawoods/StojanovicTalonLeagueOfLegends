@@ -2,8 +2,6 @@
 
 import * as d3 from "d3";
 import { csv } from "d3-fetch";
-import {nest} from 'd3-collection';
-import { selectAll } from "d3";
 
 // -------------------- DOM --------------------
 
@@ -34,7 +32,7 @@ window.addEventListener("scroll", fadeIn);
 
 const textADC = `Dans League of Legends, ADC signifie "Attack Damage Carry", ce qui se traduit en français par "porte-étendard des dégâts d'attaque". L'ADC est un type de champion qui inflige principalement des dégâts physiques à distance en utilisant des attaques de base, des compétences et des objets.
  L'objectif de l'ADC est de causer des dégâts importants aux champions ennemis tout en restant à une distance sûre de leurs attaques. L'ADC est généralement positionné dans la voie du bas (bot lane) aux côtés d'un support pour obtenir un avantage en équipe lors de la phase de laning.
- L'ADC est un rôle important dans les parties classées, car les dégâts qu'il inflige peuvent faire la différence lors des combats d'équipe. Il est également important pour l'ADC de bien gérer sa position en combat pour éviter les dégâts et rester en vie afin de continuer à infliger des dégâts importants.<button class="map" type="button"><a href='#frameStat'><span>Découvrir les stats</span></a></button>`;
+ L'ADC est un rôle important dans les parties classées, car les dégâts qu'il inflige peuvent faire la différence lors des combats d'équipe. Il est également important pour l'ADC de bien gérer sa position en combat pour éviter les dégâts et rester en vie afin de continuer à infliger des dégâts importants.<button class="map" type="button"><a href='indexStatistique.html'><span>Découvrir les stats</span></a></button>`;
 
 const textSupport = `Le rôle de support dans League of Legends est d'aider l'équipe en fournissant des soins, des boucliers et
  des contrôles de foule à ses coéquipiers. Le support est généralement placé dans la voie du bas avec l'ADC (le tireur),
@@ -42,26 +40,26 @@ const textSupport = `Le rôle de support dans League of Legends est d'aider l'é
   contrôler la carte avec des sorts de balises et à aider à prendre des objectifs stratégiques tels que les dragons et les barons Nashor. 
   Enfin, le support doit protéger son ADC et aider à sécuriser les kills en les laissant à ses coéquipiers plus offensifs. Le support est un 
   rôle important qui nécessite des compétences en matière de positionnement, de communication et de coopération pour aider son équipe à remporter 
-  la victoire<button class="map" type="button"><a href='#frameStat'><span>Découvrir les stats</span></a></button>`;
+  la victoire<button class="map" type="button"><a href='indexStatistique.html'><span>Découvrir les stats</span></a></button>`;
 
 const textMid = `Le mid dans League of Legends est un champion qui est placé au centre de la carte. Son rôle est de gagner 
 sa propre lane en affrontant son adversaire direct, de contrôler la carte en surveillant les autres lanes et en aidant ses 
 coéquipiers, de faire des dégâts massifs en peu de temps et de prendre des objectifs stratégiques tels que les tourelles et 
 les dragons. En somme, le mid est un rôle important qui nécessite des compétences en matière de combat, de stratégie et de mouvement 
-pour aider son équipe à remporter la victoire.<button class="map" type="button"><a href='#frameStat'><span>Découvrir les stats</span></a></button>`;
+pour aider son équipe à remporter la victoire.<button class="map" type="button"><a href='indexStatistique.html'><span>Découvrir les stats</span></a></button>`;
 
 const textJungle = `Le jungle dans League of Legends est un rôle flexible qui consiste à parcourir la jungle pour tuer 
 les monstres neutres, aider ses coéquipiers à gagner leur lane, contrôler la carte avec des sorts de balises et à prendre 
 des objectifs stratégiques tels que les dragons et les barons Nashor. Le jungler peut influencer le cours du jeu en donnant 
 des avantages à son équipe et en empêchant l'ennemi d'en gagner. Le jungle nécessite des compétences en matière de mouvement, 
-de stratégie et de coopération pour aider son équipe à remporter la victoire.<button class="map" type="button"><a href='#frameStat'><span>Découvrir les stats</span></a></button>`;
+de stratégie et de coopération pour aider son équipe à remporter la victoire.<button class="map" type="button"><a href='indexStatistique.html'><span>Découvrir les stats</span></a></button>`;
 
 const textTop = `Le rôle de top dans League of Legends est d'être placé sur la voie supérieure de la carte et d'affronter 
 l'adversaire direct, souvent un autre champion solitaire. Le top doit également aider son équipe en contrôlant la carte avec 
 des sorts de balises et en prenant des objectifs stratégiques tels que les tours et les Hérauts. En outre, le top peut devenir
  un tank pour l'équipe en achetant des objets défensifs pour protéger les coéquipiers fragiles, ou devenir un carry en infligeant 
  des dégâts massifs à l'ennemi. Le top est un rôle important qui nécessite des compétences en matière de combat, de stratégie et de 
- mouvement pour aider son équipe à remporter la victoire.<button class="map" type="button"><a href='#frameStat'><span>Découvrir les stats</span></a></button>`;
+ mouvement pour aider son équipe à remporter la victoire.<button class="map" type="button"><a href='indexStatistique.html'><span>Découvrir les stats</span></a></button>`;
 
  const textExplicationRetourBouton = `Il y a cinq rôles principaux dans League of Legends :<br>
 
@@ -300,123 +298,130 @@ csv("/data/League of Legends Champion Stats 12.23.csv")
 
 // -------------------- RADAR CHART --------------------
 
-  // // Dimensions du conteneur SVG
-  // const width = 600;
-  // const height = 600;
-  // // Données pour le graphique
-  // const data = [
-  //   { label: "Tank", value: 5 },
-  //   { label: "Fighter", value: 7 },
-  //   { label: "Mage", value: 3 },
-  //   { label: "Assassin", value: 6 },
-  //   { label: "Marksmann", value: 4 },
-  //   { label: "Support", value: 9 }
-  // ];
+    // Données pour le radar chart
+    const data = [
+      { category: "Catégorie 1", value: 0.8 },
+      { category: "Catégorie 2", value: 0.6 },
+      { category: "Catégorie 3", value: 0.9 },
+      { category: "Catégorie 4", value: 0.7 },
+      { category: "Catégorie 5", value: 0.5 },
+      { category: "Catégorie 6", value: 0.4 }
+    ];
 
-  // // Configuration de l'angle et de l'échelle pour le graphique
-  // const angleSlice = Math.PI * 2 / data.length;
-  // const rScale = d3.scaleLinear()
-  //   .range([0, (Math.min(width, height) / 2) * 0.8])
-  //   .domain([0, 10]);
+    // Dimensions pour le radar chart
+    const width = 580;
+    const height = 580;
+    const margin = { top: 50, right: 50, bottom: 50, left: 50 };
 
-  // // Création de l'élément SVG
-  // const svg = d3.select("#radarChart")
-  //   .append("svg")
-  //   .attr("width", width)
-  //   .attr("height", height)
-  //   .attr("class", "radar");
+    // Calcule le rayon maximal du radar chart
+    const maxRadius = Math.min(width, height) / 2 - Math.max(margin.top, margin.bottom);
 
-  // // Création du groupe pour le graphique
-  // const g = svg.append("g")
-  //   .attr("transform", `translate(${width/2},${height/2})`);
+    // Calcule les coordonnées polaires pour chaque donnée
+    const angleSlice = Math.PI * 2 / data.length;
+    const coordinates = data.map((d, i) => {
+      const angle = angleSlice * i;
+      const radius = maxRadius * d.value;
+      return [radius * Math.sin(angle), -radius * Math.cos(angle)];
+    });
 
-  // // Ajout des cercles pour les marques de graduation
-  // const levelScale = d3.scaleLinear()
-  //   .range([0, rScale(10)])
-  //   .domain([0, 10]);
-  // const numLevels = 5;
-  // for (let level = 0; level < numLevels; level++) {
-  //   const levelRadius = levelScale((level + 1) * 2);
-  //   g.selectAll(".levels")
-  //     .data(data)
-  //     .enter()
-  //     .append("circle")
-  //     .attr("class", "grid-circle")
-  //     .attr("r", levelRadius)
-  //     .style("fill", "#CDCDCD")
-  //     .style("stroke", "#CDCDCD")
-  //     .style("fill-opacity", 0.1)
-  //     .style("stroke-opacity", 0.5);
-  // }
+    // Crée l'échelle pour les catégories
+    const categories = data.map(d => d.category);
+    const angleScale = d3.scaleBand()
+      .range([0, Math.PI * 2])
+      .domain(categories);
 
-  // // Ajout des lignes pour les axes
-  // const axisGroup = g.append("g")
-  //   .attr("class", "axisWrapper");
-  // axisGroup.selectAll(".radar-axis-line")
-  //   .data(data)
-  //   .enter()
-  //   .append("line")
-  //   .attr("class", "radar-axis-line")
-  //   .attr("x1", 0)
-  //   .attr("y1", 0)
-  //   .attr("x2", (d, i) => rScale(10) * Math.cos(angleSlice * i - Math.PI/2))
-  //   .attr("y2", (d, i) => rScale(10) * Math.sin(angleSlice * i - Math.PI/2))
-  //   .attr("stroke", "white")
-  //   .attr("stroke-width", "2px");
+    // Crée l'échelle pour les valeurs
+    const valueScale = d3.scaleLinear()
+      .range([0, maxRadius])
+      .domain([0, 1]);
 
-  // // Ajout des étiquettes pour les axes
-  // const axisLabels = svg.selectAll(".axis-label")
-  //   .data(categories)
-  //   .enter().append("g")
-  //   .attr("class", "axis-label");
+    // Crée l'élément SVG pour le radar chart
+    const svg = d3.select("#radarChart")
+      .append("svg")
+      .attr("width", width)
+      .attr("height", height);
 
-  // axisLabels.append("text")
-  //   .attr("class", "label")
-  //   .attr("text-anchor", "middle")
-  //   .attr("dy", "0.35em")
-  //   .attr("x", (d, i) => xScale(i) * Math.cos(angleSlice * i - Math.PI / 2))
-  //   .attr("y", (d, i) => xScale(i) * Math.sin(angleSlice * i - Math.PI / 2))
-  //   .text(d => d)
-  //   .call(wrapText, 80);
+    // Crée un groupe pour le radar chart
+    const chartGroup = svg.append("g")
+      .attr("transform", `translate(${width / 2}, ${height / 2})`);
 
+    // Ajoute un cercle pour chaque niveau de valeur
+    chartGroup.selectAll(".level")
+      .data(d3.range(1, 6))
+      .enter()
+      .append("circle")
+      .attr("class", "level")
+      .attr("cx", 0)
+      .attr("cy", 0)
+      .attr("r", d => maxRadius / 5 * d)
+      .style("fill", "none")
+      .style("stroke", "gray");
 
-  RadarChart.defaultConfig.color = function() {};
-  RadarChart.defaultConfig.radius = 3;
-  RadarChart.defaultConfig.w = 400;
-  RadarChart.defaultConfig.h = 400;
-  
-  var data = [
-    {
-      className: 'germany', // optional can be used for styling
-      axes: [
-        {axis: "strength", value: 6}, 
-        {axis: "intelligence", value: 8}, 
-        {axis: "charisma", value: 11},  
-        {axis: "dexterity", value: 9},  
-        {axis: "luck", value: 6}
-      ]
-    },
-    {
-      className: 'argentina',
-      axes: [
-        {axis: "strength", value: 7}, 
-        {axis: "intelligence", value: 5}, 
-        {axis: "charisma", value: 7},  
-        {axis: "dexterity", value: 5},  
-        {axis: "luck", value: 9}
-      ]
-    }
-  ];
-  
-  
-  
-  var chart = RadarChart.chart();
-  var cfg = chart.config(); // retrieve default config
-  var svg = d3.select('body').append('svg')
-    .attr('width', cfg.w + cfg.w + 50)
-    .attr('height', cfg.h + cfg.h / 4);
-  svg.append('g').classed('single', 1).datum(data).call(chart);
-  render();
+    // Ajoute une ligne pour chaque catégorie
+    chartGroup.selectAll(".radar-line")
+      .data(coordinates)
+      .enter()
+      .append("line")
+      .attr("class", "radar-line")
+      .attr("x1", 0)
+      .attr("y1", 0)
+      .attr("x2", d => d[0])
+      .attr("y2", d => d[1])
+      .style("stroke", "blue")
+      .style("stroke-width", "3px");
+
+    // Ajoute un cercle pour chaque catégorie
+    chartGroup.selectAll(".radar-point")
+      .data(coordinates)
+      .enter()
+      .append("circle")
+      .attr("class", "radar-point")
+      .attr("cx", d => d[0])
+      .attr("cy", d => d[1])
+      .attr("r", 5)
+      .style("fill", "blue");
+
+      // Ajoute le texte pour chaque catégorie
+      chartGroup.selectAll(".radar-label")
+      .data(categories)
+      .enter()
+      .append("text")
+      .attr("class", "radar-label")
+      .attr("x", (d, i) => {
+      const angle = angleScale(d);
+      const radius = maxRadius * 1.1;
+      return radius * Math.sin(angle);
+      })
+      .attr("y", (d, i) => {
+      const angle = angleScale(d);
+      const radius = maxRadius * 1.1;
+      return -radius * Math.cos(angle);
+      })
+      .text(d => d)
+      .attr("text-anchor", (d, i) => {
+      const angle = angleScale(d);
+      if (angle === Math.PI / 2) {
+      return "middle";
+      } else if (angle > Math.PI / 2 && angle < Math.PI * 3 / 2) {
+      return "end";
+      } else {
+      return "start";
+      }
+      })
+      .attr("alignment-baseline", (d, i) => {
+      const angle = angleScale(d);
+      if (angle === Math.PI / 2) {
+      return "middle";
+      } else if (angle > Math.PI / 2 && angle < Math.PI * 3 / 2) {
+      return "baseline";
+      } else {
+      return "hanging";
+      }
+      })
+      .style("font-size", "14px")
+      .style("fill", "black")
+      .style("text-transform", "uppercase")
+      .style("letter-spacing", "1px");
 
 
 

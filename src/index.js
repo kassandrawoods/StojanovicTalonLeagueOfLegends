@@ -2,6 +2,8 @@
 
 import * as d3 from "d3";
 import { csv } from "d3-fetch";
+import {nest} from 'd3-collection';
+import { selectAll } from "d3";
 
 // -------------------- DOM --------------------
 
@@ -295,3 +297,130 @@ csv("/data/League of Legends Champion Stats 12.23.csv")
     //centrer le texte sur la tranche de données
     d3.selectAll("text").attr("text-anchor", "middle");
   });
+
+// -------------------- RADAR CHART --------------------
+
+  // // Dimensions du conteneur SVG
+  // const width = 600;
+  // const height = 600;
+  // // Données pour le graphique
+  // const data = [
+  //   { label: "Tank", value: 5 },
+  //   { label: "Fighter", value: 7 },
+  //   { label: "Mage", value: 3 },
+  //   { label: "Assassin", value: 6 },
+  //   { label: "Marksmann", value: 4 },
+  //   { label: "Support", value: 9 }
+  // ];
+
+  // // Configuration de l'angle et de l'échelle pour le graphique
+  // const angleSlice = Math.PI * 2 / data.length;
+  // const rScale = d3.scaleLinear()
+  //   .range([0, (Math.min(width, height) / 2) * 0.8])
+  //   .domain([0, 10]);
+
+  // // Création de l'élément SVG
+  // const svg = d3.select("#radarChart")
+  //   .append("svg")
+  //   .attr("width", width)
+  //   .attr("height", height)
+  //   .attr("class", "radar");
+
+  // // Création du groupe pour le graphique
+  // const g = svg.append("g")
+  //   .attr("transform", `translate(${width/2},${height/2})`);
+
+  // // Ajout des cercles pour les marques de graduation
+  // const levelScale = d3.scaleLinear()
+  //   .range([0, rScale(10)])
+  //   .domain([0, 10]);
+  // const numLevels = 5;
+  // for (let level = 0; level < numLevels; level++) {
+  //   const levelRadius = levelScale((level + 1) * 2);
+  //   g.selectAll(".levels")
+  //     .data(data)
+  //     .enter()
+  //     .append("circle")
+  //     .attr("class", "grid-circle")
+  //     .attr("r", levelRadius)
+  //     .style("fill", "#CDCDCD")
+  //     .style("stroke", "#CDCDCD")
+  //     .style("fill-opacity", 0.1)
+  //     .style("stroke-opacity", 0.5);
+  // }
+
+  // // Ajout des lignes pour les axes
+  // const axisGroup = g.append("g")
+  //   .attr("class", "axisWrapper");
+  // axisGroup.selectAll(".radar-axis-line")
+  //   .data(data)
+  //   .enter()
+  //   .append("line")
+  //   .attr("class", "radar-axis-line")
+  //   .attr("x1", 0)
+  //   .attr("y1", 0)
+  //   .attr("x2", (d, i) => rScale(10) * Math.cos(angleSlice * i - Math.PI/2))
+  //   .attr("y2", (d, i) => rScale(10) * Math.sin(angleSlice * i - Math.PI/2))
+  //   .attr("stroke", "white")
+  //   .attr("stroke-width", "2px");
+
+  // // Ajout des étiquettes pour les axes
+  // const axisLabels = svg.selectAll(".axis-label")
+  //   .data(categories)
+  //   .enter().append("g")
+  //   .attr("class", "axis-label");
+
+  // axisLabels.append("text")
+  //   .attr("class", "label")
+  //   .attr("text-anchor", "middle")
+  //   .attr("dy", "0.35em")
+  //   .attr("x", (d, i) => xScale(i) * Math.cos(angleSlice * i - Math.PI / 2))
+  //   .attr("y", (d, i) => xScale(i) * Math.sin(angleSlice * i - Math.PI / 2))
+  //   .text(d => d)
+  //   .call(wrapText, 80);
+
+
+  RadarChart.defaultConfig.color = function() {};
+  RadarChart.defaultConfig.radius = 3;
+  RadarChart.defaultConfig.w = 400;
+  RadarChart.defaultConfig.h = 400;
+  
+  var data = [
+    {
+      className: 'germany', // optional can be used for styling
+      axes: [
+        {axis: "strength", value: 6}, 
+        {axis: "intelligence", value: 8}, 
+        {axis: "charisma", value: 11},  
+        {axis: "dexterity", value: 9},  
+        {axis: "luck", value: 6}
+      ]
+    },
+    {
+      className: 'argentina',
+      axes: [
+        {axis: "strength", value: 7}, 
+        {axis: "intelligence", value: 5}, 
+        {axis: "charisma", value: 7},  
+        {axis: "dexterity", value: 5},  
+        {axis: "luck", value: 9}
+      ]
+    }
+  ];
+  
+  
+  
+  var chart = RadarChart.chart();
+  var cfg = chart.config(); // retrieve default config
+  var svg = d3.select('body').append('svg')
+    .attr('width', cfg.w + cfg.w + 50)
+    .attr('height', cfg.h + cfg.h / 4);
+  svg.append('g').classed('single', 1).datum(data).call(chart);
+  render();
+
+
+
+
+
+
+

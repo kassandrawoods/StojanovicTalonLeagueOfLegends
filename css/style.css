@@ -90,6 +90,12 @@ h1, h2, h3, h4 {
     width : 100%;
 }
 
+#radarChart {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    width : 100%;
+}
 
 
 .buttons {
@@ -235,3 +241,5 @@ img#map-image {
     opacity: 0;
     transition: opacity 1s ease-in-out;
   }
+
+

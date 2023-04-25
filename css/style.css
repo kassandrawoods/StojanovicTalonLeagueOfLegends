@@ -36,6 +36,15 @@ body, html {
     background-size: cover;
 }
 
+#backgroundStats {
+    display : flex;
+    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('../img/background.jpg');
+    height: 100%;
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 .accueil {
     display : flex;
     flex-direction: column;
@@ -83,13 +92,44 @@ h1, h2, h3, h4 {
     width : 100%;
 }
 
-.container {
-    text-align: center;
-  }
-  
-  #pieChart, #radarChart {
-    display: inline-block;
-    width: 50%;
+#containerPie {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    top:50px;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#containerRadar {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    top:50px;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#pieChart {
+    margin-left: 120px;
+}
+
+  #radarChart {
+    margin-top: 100px;
+    margin-right: 120px;
+}
+
+  #explicationPieChart {
+    margin-right: 120px;
+    margin-left: 90px;
+}
+
+  #explicationRadarChart {
+    margin-top: 100px;
+    margin-left: 120px;
+    margin-right: 90px;
   }
 
 
@@ -224,6 +264,10 @@ a:visited {
 }
 
 p#explication {
+    text-align: justify;
+}
+
+p#explicationStats {
     text-align: justify;
 }
 

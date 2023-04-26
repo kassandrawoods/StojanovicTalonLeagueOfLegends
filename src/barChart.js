@@ -25,7 +25,7 @@ function createBarChart(donnees) {
   console.log(dataTab);
 
   // Largeur et hauteur du graphique
-  var width = 500;
+  var width = 1000;
   var height = 5000;
 
   // Création de l'échelle pour l'axe des x

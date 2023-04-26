@@ -80,6 +80,14 @@ h1, h2, h3, h4 {
     
 }
 
+#containerBarChart {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    top: 50px;
+
+}
+
 #frameMap {
     position: relative;
     top : 150px;

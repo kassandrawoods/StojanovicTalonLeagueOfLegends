@@ -2,6 +2,7 @@ import * as d3 from "d3";
 import { csv } from "d3-fetch";
 import { createCamembert } from "./camembert";
 import { createRadarChart } from "./radarChart";
+import { createBarChart } from "./barChart";
 
 // -------------------- DATA --------------------
 // -------------------- DATA --------------------
@@ -32,4 +33,6 @@ csv("/data/League of Legends Champion Stats 12.23.csv")
     createCamembert(cleanData);
     // -------------------- GRAPHIQUE RADAR -------------------- //
     createRadarChart(cleanData);
+    // -------------------- GRAPHIQUE BARRE -------------------- //
+    createBarChart(cleanData);
   });

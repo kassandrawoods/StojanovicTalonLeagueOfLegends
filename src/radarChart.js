@@ -53,8 +53,8 @@ function createRadarChart(donnees) {
   ];
 
   // Dimensions pour le radar chart
-  const width = 580;
-  const height = 580;
+  const width = 700;
+  const height = 600;
   const margin = { top: 50, right: 50, bottom: 50, left: 50 };
   //mettre pourcentage dans un tableau
 
@@ -104,7 +104,8 @@ function createRadarChart(donnees) {
     .attr("cy", 0)
     .attr("r", (d) => (maxRadius / 5) * d)
     .style("fill", "none")
-    .style("stroke", "gray");
+    .style("stroke", "#025940")
+    .style("stroke-width", "2px");
 
   // Ajoute une ligne pour chaque catégorie
   chartGroup
@@ -117,7 +118,7 @@ function createRadarChart(donnees) {
     .attr("y1", 0)
     .attr("x2", (d) => d[0])
     .attr("y2", (d) => d[1])
-    .style("stroke", "blue")
+    .style("stroke", "#62A632") 
     .style("stroke-width", "3px");
 
   // Ajoute un cercle pour chaque catégorie
@@ -129,8 +130,18 @@ function createRadarChart(donnees) {
     .attr("class", "radar-point")
     .attr("cx", (d) => d[0])
     .attr("cy", (d) => d[1])
-    .attr("r", 5)
-    .style("fill", "blue");
+    .attr("r", 4)
+    .style("fill", "#62A632");
+
+    // Ajoute un bouton pour démarrer la transition
+d3.select("#transitionButton")
+.on("click", function () {
+  chartGroup
+    .selectAll(".level")
+    .transition()
+    .duration(1000)
+    .attr("r", (d) => (maxRadius / 5) * d * Math.random());
+});
 
   // Ajoute le texte pour chaque catégorie
   chartGroup

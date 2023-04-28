@@ -70,7 +70,6 @@ function createBarChart(donnees) {
       return x(d.score);
     })
     .attr("height", y.bandwidth());
-
   // Ajout des labels
   svg
     .selectAll("text")

@@ -75,64 +75,90 @@ des sorts de balises et en prenant des objectifs stratégiques tels que les tour
 
      // -------------------- BOUTONS ROLE --------------------
 
-     let isExpanded = false;
-     let previousButton = null;
-     
-     const expandButton = (button, text) => {
-       button.style.backgroundColor = "rgb(11, 150, 227)";
-       textExplication.innerHTML = text;
-       if (previousButton !== null) {
-         previousButton.style.backgroundColor = "rgb(11, 198, 227)";
-       }
-       previousButton = button;
-       isExpanded = true;
-     };
-     
-     const resetButton = (button, text) => {
-       button.style.backgroundColor = "rgb(11, 198, 227)";
-       textExplication.innerHTML = text;
-       isExpanded = false;
-     };
-     
-     btnAdc.addEventListener("click", () => {
-       if (!isExpanded) {
-         expandButton(btnAdc, textADC);
-       } else {
-         resetButton(btnAdc, textExplicationRetourBouton);
-       }
-     });
-     
-     btnSupport.addEventListener("click", () => {
-       if (!isExpanded) {
-         expandButton(btnSupport, textSupport);
-       } else {
-         resetButton(btnSupport, textExplicationRetourBouton);
-       }
-     });
-     
-     btnMid.addEventListener("click", () => {
-       if (!isExpanded) {
-         expandButton(btnMid, textMid);
-       } else {
-         resetButton(btnMid, textExplicationRetourBouton);
-       }
-     });
-     
-     btnTop.addEventListener("click", () => {
-       if (!isExpanded) {
-         expandButton(btnTop, textTop);
-       } else {
-         resetButton(btnTop, textExplicationRetourBouton);
-       }
-     });
-     
-     btnJungle.addEventListener("click", () => {
-       if (!isExpanded) {
-         expandButton(btnJungle, textJungle);
-       } else {
-         resetButton(btnJungle, textExplicationRetourBouton);
-       }
-     });
+  let isExpanded = false;
+  let previousButton = null;
+
+  const expandButton = (button, text) => {
+    button.style.backgroundColor = "rgb(11, 150, 227)";
+    textExplication.innerHTML = text;
+    if (previousButton !== null && previousButton !== button) {
+      previousButton.style.backgroundColor = "rgb(11, 198, 227)";
+    }
+    previousButton = button;
+    isExpanded = true;
+  };
+
+  const resetButton = (button, text) => {
+    button.style.backgroundColor = "rgb(11, 198, 227)";
+    textExplication.innerHTML = text;
+    isExpanded = false;
+  };
+
+  btnAdc.addEventListener("click", () => {
+    if (!isExpanded) {
+      expandButton(btnAdc, textADC);
+    } else {
+      if (previousButton === btnAdc) {
+        resetButton(btnAdc, textExplicationRetourBouton);
+      } else {
+        resetButton(previousButton, textADC);
+        expandButton(btnAdc, textADC);
+      }
+    }
+  });
+
+  btnSupport.addEventListener("click", () => {
+    if (!isExpanded) {
+      expandButton(btnSupport, textSupport);
+    } else {
+      if (previousButton === btnSupport) {
+        resetButton(btnSupport, textExplicationRetourBouton);
+      } else {
+        resetButton(previousButton, textSupport);
+        expandButton(btnSupport, textSupport);
+      }
+    }
+  });
+
+  btnMid.addEventListener("click", () => {
+    if (!isExpanded) {
+      expandButton(btnMid, textMid);
+    } else {
+      if (previousButton === btnMid) {
+        resetButton(btnMid, textExplicationRetourBouton);
+      } else {
+        resetButton(previousButton, textMid);
+        expandButton(btnMid, textMid);
+      }
+    }
+  });
+
+  btnTop.addEventListener("click", () => {
+    if (!isExpanded) {
+      expandButton(btnTop, textTop);
+    } else {
+      if (previousButton === btnTop) {
+        resetButton(btnTop, textExplicationRetourBouton);
+      } else {
+        resetButton(previousButton, textTop);
+        expandButton(btnTop, textTop);
+      }
+    }
+  });
+
+  btnJungle.addEventListener("click", () => {
+    if (!isExpanded) {
+      expandButton(btnJungle, textJungle);
+    } else {
+      if (previousButton === btnJungle) {
+        resetButton(btnJungle, textExplicationRetourBouton);
+      } else {
+        resetButton(previousButton, textJungle);
+        expandButton(btnJungle, textJungle);
+      }
+    }
+  });
+
 
  // -------------------- BOUTONS ANIMATIONS --------------------
 

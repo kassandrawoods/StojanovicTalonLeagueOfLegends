@@ -133,16 +133,6 @@ function createRadarChart(donnees) {
     .attr("r", 4)
     .style("fill", "#62A632");
 
-    // Ajoute un bouton pour démarrer la transition
-d3.select("#transitionButton")
-.on("click", function () {
-  chartGroup
-    .selectAll(".level")
-    .transition()
-    .duration(1000)
-    .attr("r", (d) => (maxRadius / 5) * d * Math.random());
-});
-
   // Ajoute le texte pour chaque catégorie
   chartGroup
     .selectAll(".radar-label")

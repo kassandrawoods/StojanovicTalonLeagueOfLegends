@@ -83,9 +83,24 @@ h1, h2, h3, h4 {
 #containerBarChart {
     width: 100%;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     position: relative;
     top: 50px;
+    margin-left: auto;
+    margin-right: auto;
 }
+
+.boutonStats {
+    position: relative;
+    top: 25px;
+    display: flex;
+    justify-content: space-around;
+    height: min-content;
+}
+
+
 
 #frameMap {
     position: relative;
@@ -135,7 +150,7 @@ h1, h2, h3, h4 {
 
   #explicationRadarChart {
     margin-top: 100px;
-    margin-left: 120px;
+    margin-left: 200px;
     margin-right: 90px;
   }
 
@@ -369,4 +384,13 @@ button.stats:hover::before, button.stats:hover::after{
   }
 
 
+#barChart {
+    margin-top: 70px;
+}
 
+
+
+#containerBarChart2 {
+    display: flex;
+    justify-content: space-around;
+}

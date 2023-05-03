@@ -81,15 +81,15 @@ h1, h2, h3, h4 {
 
 
 #containerBarChart {
-    width: 100%;
-    height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    position: relative;
-    top: 50px;
-    margin-left: auto;
-    margin-right: auto;
+    justify-content:center;
+}
+
+#barChart {
+    margin-top: -150px;
+    margin-left: 10%;
+
 }
 
 .boutonStats {
@@ -283,6 +283,10 @@ button.map:hover span:after {
     border-radius: 12px;
 }
 
+
+
+
+
 button.decouverteStats span {
     cursor: pointer;
     display: inline-block;
@@ -383,14 +387,12 @@ button.stats:hover::before, button.stats:hover::after{
     border-right: 0;
   }
 
+  #titreBarChart {
+    margin-top: 60px;
+    margin-left: 10%;
+    text-align: left;
+  }
 
-#barChart {
-    margin-top: 70px;
-}
 
 
 
-#containerBarChart2 {
-    display: flex;
-    justify-content: space-around;
-}

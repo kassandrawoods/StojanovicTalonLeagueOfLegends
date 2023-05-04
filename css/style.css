@@ -391,10 +391,27 @@ button.stats:hover::before, button.stats:hover::after{
     border-right: 0;
   }
 
-  #titreBarChart {
+  #titre {
     margin-top: 60px;
     margin-left: 10%;
     text-align: left;
+  }
+
+  #nom {
+    margin-left: 10%;
+    margin-right : -10%;
+  }
+
+  #nom p {
+    text-align: right;
+ height: min-content;
+
+    font-size: 15px;
+  }
+
+  #tableau {
+    display : flex;
+    flex-direction: row;
   }
 
 

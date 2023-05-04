@@ -7,6 +7,10 @@
     src: url('font/Spiegel-Regular.ttf') format('truetype')
 } */
 
+* {
+    cursor: url('/img/normal.cur'), auto;
+  }
+
 body, html {
     font-family: 'Spiegel' ;
     font-size: 16px;
@@ -140,7 +144,7 @@ h1, h2, h3, h4 {
 
   #radarChart {
     margin-top: 100px;
-    margin-right: 120px;
+    margin-right: 80px;
 }
 
   #explicationPieChart {
@@ -150,7 +154,7 @@ h1, h2, h3, h4 {
 
   #explicationRadarChart {
     margin-top: 100px;
-    margin-left: 200px;
+    margin-left: 120px; 
     margin-right: 90px;
   }
 
@@ -288,7 +292,7 @@ button.map:hover span:after {
 
 
 button.decouverteStats span {
-    cursor: pointer;
+    cursor: "/img/normal";
     display: inline-block;
     position: relative;
     transition: 0.5s;
@@ -392,6 +396,23 @@ button.stats:hover::before, button.stats:hover::after{
     margin-left: 10%;
     text-align: left;
   }
+
+
+  #videDivGraphe {
+    width: auto;
+    height: 150px;
+  }
+
+
+  #titreBarChart {
+    margin-left: 120px;
+    margin-right: 120px;
+  }
+
+
+
+
+
 
 
 

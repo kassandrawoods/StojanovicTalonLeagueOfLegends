@@ -30,6 +30,16 @@ function fadeIn() {
 
 window.addEventListener("scroll", fadeIn);
 
+const div1 = document.querySelector('#background');
+const div2 = document.querySelector('#frameMap');
+
+document.addEventListener('scroll', () => {
+	if (document.documentElement.scrollTop >= div1.offsetTop && document.documentElement.scrollTop <= div1.offsetTop + div1.offsetHeight) {
+		div2.scrollIntoView({ behavior: 'smooth' });
+	}
+});
+
+
 const textADC = `Dans League of Legends, ADC signifie "Attack Damage Carry", ce qui se traduit en français par "porte-étendard des dégâts d'attaque". L'ADC est un type de champion qui inflige principalement des dégâts physiques à distance en utilisant des attaques de base, des compétences et des objets.
  L'objectif de l'ADC est de causer des dégâts importants aux champions ennemis tout en restant à une distance sûre de leurs attaques. L'ADC est généralement positionné dans la voie du bas (bot lane) aux côtés d'un support pour obtenir un avantage en équipe lors de la phase de laning.
  L'ADC est un rôle important dans les parties classées, car les dégâts qu'il inflige peuvent faire la différence lors des combats d'équipe. Il est également important pour l'ADC de bien gérer sa position en combat pour éviter les dégâts et rester en vie afin de continuer à infliger des dégâts importants.`;

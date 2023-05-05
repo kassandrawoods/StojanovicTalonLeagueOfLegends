@@ -1,17 +1,11 @@
 import * as d3 from "d3";
 import { csv } from "d3-fetch";
 
-const divChamp = document.getElementById("championBarChart");
-
-function triScore(donnees) {
-  //tri par score
-  var dataScore = donnees.sort(function (a, b) {
-    return a.Score - b.Score;
-  });
-  return dataScore;
-}
+const divChamp = document.getElementById("nom");
 
 function createBarChartScore(donnees) {
+  //vider divChamp
+  divChamp.innerHTML = "";
   d3.select("#barChart").selectAll("svg").remove();
   //creer svg pour le graphique
   var svg = d3
@@ -31,13 +25,19 @@ function createBarChartScore(donnees) {
       });
     }
   }
-  console.log(dataTab);
 
-  var dataAlphabet = dataTab.sort(function (a, b) {
-    return a.champion.localeCompare(b.champion);
+  console.log(dataTab);
+  //trier données par score
+  dataTab.sort(function (a, b) {
+    return b.score - a.score;
   });
 
-  //afficher tableau dans la console
+  //mettre nom des champions dans des paragraphes
+  for (var i = 0; i < dataTab.length; ++i) {
+    var p = document.createElement("p");
+    p.innerHTML = dataTab[i].champion;
+    divChamp.appendChild(p);
+  }
 
   // Largeur et hauteur du graphique
   var width = 1200;
@@ -109,6 +109,8 @@ function createBarChartScore(donnees) {
 }
 
 function createBarChartBann(donnees) {
+  //vider divChamp
+  divChamp.innerHTML = "";
   //creer svg pour le graphique et suppression du graphique precedent
   d3.select("#barChart").selectAll("svg").remove();
 
@@ -128,6 +130,17 @@ function createBarChartBann(donnees) {
         bann: donnees[i].BanPerc,
       });
     }
+  }
+
+  //trier données par score
+  dataTab.sort(function (a, b) {
+    return b.bann - a.bann;
+  });
+
+  for (var i = 0; i < dataTab.length; ++i) {
+    var p = document.createElement("p");
+    p.innerHTML = dataTab[i].champion;
+    divChamp.appendChild(p);
   }
 
   //afficher tableau dans la console
@@ -176,7 +189,7 @@ function createBarChartBann(donnees) {
       return y(d.champion);
     })
     .attr("width", function (d) {
-      return x(d.bann);
+      return x(d.bann) / 1.5;
     })
     .attr("height", y.bandwidth());
   //ajoute score a droite des barres et champion a gauche
@@ -186,7 +199,7 @@ function createBarChartBann(donnees) {
     .enter()
     .append("text")
     .attr("x", function (d) {
-      return x(d.bann) + 10;
+      return x(d.bann) / 1.47;
     })
     .attr("y", function (d) {
       return y(d.champion) + 20;
@@ -202,7 +215,8 @@ function createBarChartBann(donnees) {
 }
 
 function createBarChartPick(donnees) {
-  //ajouter un titre
+  //vider divChamp
+  divChamp.innerHTML = "";
   //creer svg pour le graphique et suppression du graphique precedent
   d3.select("#barChart").selectAll("svg").remove();
 
@@ -222,6 +236,16 @@ function createBarChartPick(donnees) {
         pick: donnees[i].PickPerc,
       });
     }
+  }
+  //trier données par score
+  dataTab.sort(function (a, b) {
+    return b.pick - a.pick;
+  });
+
+  for (var i = 0; i < dataTab.length; ++i) {
+    var p = document.createElement("p");
+    p.innerHTML = dataTab[i].champion;
+    divChamp.appendChild(p);
   }
 
   //afficher tableau dans la console
@@ -270,7 +294,7 @@ function createBarChartPick(donnees) {
       return y(d.champion);
     })
     .attr("width", function (d) {
-      return x(d.pick);
+      return x(d.pick) / 1.5;
     })
     .attr("height", y.bandwidth());
   //ajoute score a droite des barres et champion a gauche
@@ -280,12 +304,13 @@ function createBarChartPick(donnees) {
     .enter()
     .append("text")
     .attr("x", function (d) {
-      return x(d.pick) + 10;
+      return x(d.pick) / 1.47;
     })
     .attr("y", function (d) {
       return y(d.champion) + 20;
     })
     .text(function (d) {
+      //afficher champion et score
       return d.pick + "%";
     });
 
@@ -295,9 +320,4 @@ function createBarChartPick(donnees) {
   d3.selectAll("text").style("fill", "white");
 }
 
-export {
-  createBarChartScore,
-  createBarChartBann,
-  createBarChartPick,
-  triScore,
-};
+export { createBarChartScore, createBarChartBann, createBarChartPick };

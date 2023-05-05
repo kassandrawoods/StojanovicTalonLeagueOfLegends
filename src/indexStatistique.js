@@ -6,16 +6,13 @@ import {
   createBarChartScore,
   createBarChartBann,
   createBarChartPick,
-  triScore,
 } from "./barChart";
 
 const btnScore = document.getElementById("score");
 const btnBann = document.getElementById("ban");
 const btnPick = document.getElementById("pick");
 
-const btnTriScore = document.getElementById("triScore");
-
-const titre = document.getElementById("titreBarChart");
+const titre = document.getElementById("titre");
 
 // -------------------- DATA --------------------
 // -------------------- DATA --------------------

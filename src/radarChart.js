@@ -116,9 +116,11 @@ function createRadarChart(donnees) {
     .attr("class", "radar-line")
     .attr("x1", 0)
     .attr("y1", 0)
+    .transition()
+    .duration(2000)
     .attr("x2", (d) => d[0])
     .attr("y2", (d) => d[1])
-    .style("stroke", "#62A632") 
+    .style("stroke", "#62A632")
     .style("stroke-width", "3px");
 
   // Ajoute un cercle pour chaque catégorie
@@ -128,6 +130,8 @@ function createRadarChart(donnees) {
     .enter()
     .append("circle")
     .attr("class", "radar-point")
+    .transition()
+    .duration(2000)
     .attr("cx", (d) => d[0])
     .attr("cy", (d) => d[1])
     .attr("r", 4)

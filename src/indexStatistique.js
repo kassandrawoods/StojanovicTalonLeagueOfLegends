@@ -7,6 +7,7 @@ import {
   createBarChartBann,
   createBarChartPick,
 } from "./barChart";
+import { BarChart } from "./alternatif";
 
 const btnScore = document.getElementById("score");
 const btnBann = document.getElementById("ban");
@@ -45,6 +46,7 @@ csv("/data/League of Legends Champion Stats 12.23.csv")
     createRadarChart(cleanData);
     // -------------------- GRAPHIQUE BARRE -------------------- //
     createBarChartScore(cleanData);
+
     //si clique sur btnScore, afficher graphique score
     btnScore.addEventListener("click", function () {
       //changer titre

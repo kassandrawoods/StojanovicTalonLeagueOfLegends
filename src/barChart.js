@@ -16,7 +16,10 @@ function createBarChartScore(donnees) {
 
   // mettre nom des champions et leur score dans un tableau
   var dataTab = [];
-  for (var i = 0; i < donnees.length; ++i) {
+  donnees.sort(function (a, b) {
+    return b.Score - a.Score;
+  });
+  for (var i = 0; i <= 25; ++i) {
     //si le nom existe comme champion, ne pas rajouter dans le tableau
     if (!dataTab.some((e) => e.champion === donnees[i].Name)) {
       dataTab.push({
@@ -27,10 +30,6 @@ function createBarChartScore(donnees) {
   }
 
   console.log(dataTab);
-  //trier données par score
-  dataTab.sort(function (a, b) {
-    return b.score - a.score;
-  });
 
   //mettre nom des champions dans des paragraphes
   for (var i = 0; i < dataTab.length; ++i) {
@@ -41,7 +40,7 @@ function createBarChartScore(donnees) {
 
   // Largeur et hauteur du graphique
   var width = 1200;
-  var height = 5000;
+  var height = 1000;
 
   // Création de l'échelle pour l'axe des x
   var x = d3
@@ -78,6 +77,9 @@ function createBarChartScore(donnees) {
     .data(dataTab)
     .enter()
     .append("rect")
+    //transition
+    .transition()
+    .duration(2000)
     .attr("y", function (d) {
       return y(d.champion);
     })
@@ -103,7 +105,7 @@ function createBarChartScore(donnees) {
     });
 
   //mettre rectangle en bleu
-  d3.selectAll("rect").style("fill", "rgb(11, 30, 227)");
+  d3.selectAll("rect").style("fill", "#025940");
   //mettre texte en blanc
   d3.selectAll("text").style("fill", "white");
 }
@@ -185,6 +187,8 @@ function createBarChartBann(donnees) {
     .data(dataTab)
     .enter()
     .append("rect")
+    .transition()
+    .duration(2000)
     .attr("y", function (d) {
       return y(d.champion);
     })
@@ -209,7 +213,7 @@ function createBarChartBann(donnees) {
     });
 
   //mettre rectangle en bleu
-  d3.selectAll("rect").style("fill", "rgb(11, 30, 227)");
+  d3.selectAll("rect").style("fill", "#044040");
   //mettre texte en blanc
   d3.selectAll("text").style("fill", "white");
 }
@@ -290,6 +294,8 @@ function createBarChartPick(donnees) {
     .data(dataTab)
     .enter()
     .append("rect")
+    .transition()
+    .duration(2000)
     .attr("y", function (d) {
       return y(d.champion);
     })
@@ -315,7 +321,7 @@ function createBarChartPick(donnees) {
     });
 
   //mettre rectangle en bleu
-  d3.selectAll("rect").style("fill", "rgb(11, 30, 227)");
+  d3.selectAll("rect").style("fill", "#62A632");
   //mettre texte en blanc
   d3.selectAll("text").style("fill", "white");
 }

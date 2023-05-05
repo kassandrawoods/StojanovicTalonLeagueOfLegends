@@ -91,7 +91,7 @@ function createCamembert(donnees) {
     })
     .attr("dy", ".35em")
     .text(function (d) {
-      return d.data.value + "%" + " " + d.data.label;
+      return d.data.label;
     });
 
   //changer la couleur du texte
@@ -105,11 +105,25 @@ function createCamembert(donnees) {
       .select("path")
       .transition()
       .duration(500)
-      .attr("d", d3.arc().outerRadius(radius).innerRadius(0));
+      .attr("d", d3.arc().outerRadius(radius).innerRadius(0))
+      .select("text")
+      .text(function (d) {
+        return d.data.label + " " + d.data.value + "%";
+      });
+    d3.select(this)
+      .select("text")
+      .text(function (d) {
+        return d.data.label + " " + d.data.value + "%";
+      });
   });
 
   g.on("mouseout", function (d) {
     d3.select(this).select("path").transition().duration(500).attr("d", arc);
+    d3.select(this)
+      .select("text")
+      .text(function (d) {
+        return d.data.label;
+      });
   });
 
   //centrer le texte sur la tranche de données

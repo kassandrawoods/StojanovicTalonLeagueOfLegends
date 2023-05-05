@@ -113,7 +113,7 @@ function createCamembert(donnees) {
     d3.select(this)
       .select("text")
       .text(function (d) {
-        return d.data.label + " " + d.data.value + "%";
+        return d.data.value + "%";
       });
   });
 
@@ -124,6 +124,7 @@ function createCamembert(donnees) {
       .text(function (d) {
         return d.data.label;
       });
+    d3.selectAll("text").style("font-size", "15px");
   });
 
   //centrer le texte sur la tranche de données

@@ -7,7 +7,7 @@ import {
   createBarChartBann,
   createBarChartPick,
 } from "./barChart";
-import { BarChart } from "./alternatif";
+import { barChartScore } from "./alternatif";
 
 const btnScore = document.getElementById("score");
 const btnBann = document.getElementById("ban");
@@ -45,22 +45,26 @@ csv("/data/League of Legends Champion Stats 12.23.csv")
     // -------------------- GRAPHIQUE RADAR -------------------- //
     createRadarChart(cleanData);
     // -------------------- GRAPHIQUE BARRE -------------------- //
-    createBarChartScore(cleanData);
 
     //si clique sur btnScore, afficher graphique score
     btnScore.addEventListener("click", function () {
       //changer titre
-      titre.innerHTML = " SCORE PAR CHAMPION";
+      titre.innerHTML = "SCORE DES 25 MEILLEURS CHAMPIONS";
       createBarChartScore(cleanData);
     });
     //si clique sur btnBann, afficher graphique bann
     btnBann.addEventListener("click", function () {
-      titre.innerHTML = "TAUX DE BANNISSEMENT PAR CHAMPION";
+      titre.innerHTML = "TAUX DE BANNISSEMENT DES 25 MEILLEURS CHAMPIONS";
       createBarChartBann(cleanData);
     });
 
     btnPick.addEventListener("click", function () {
-      titre.innerHTML = "TAUX DE PICK PAR CHAMPION";
+      titre.innerHTML = "TAUX DE PICK DES 25 MEILLEURS CHAMPIONS";
       createBarChartPick(cleanData);
+    });
+
+    roleTop.addEventListener("click", function () {
+      titre.innerHTML = "SCORE DES 25 MEILLEURS CHAMPIONS";
+      barChartScore(cleanData, "TOP");
     });
   });

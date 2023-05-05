@@ -1,83 +1,133 @@
 import * as d3 from "d3";
+import { csv } from "d3-fetch";
 
-function BarChart(donnees) {
-  d3.select("#barChart").selectAll("svg").remove();
+const divChamp = document.getElementById("nom");
 
-  // mettre nom des champions et leur score dans un tableau
-  var data = [];
-  for (var i = 0; i < donnees.length; ++i) {
+function barChartScore(donnees, lane) {
+  //vider divChamp
+  divChamp.innerHTML = "";
+  d3.select("#barChart2").selectAll("svg").remove();
+  //creer svg pour le graphique
+  var svg = d3
+    .select("#barChart")
+    .append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+  //trier données par role et score
+  var dataTab = [];
+  donnees.sort(function (a, b) {
+    return b.Score - a.Score;
+  });
+
+  for (var i = 0; i < 25; ++i) {
     //si le nom existe comme champion, ne pas rajouter dans le tableau
-    if (!data.some((e) => e.champion === donnees[i].Name)) {
-      data.push({
+    if (donnees[i].Role === lane) {
+      dataTab.push({
         champion: donnees[i].Name,
         score: donnees[i].Score,
       });
     }
   }
 
-  console.log(data);
-  //trier données par score
-  data.sort(function (a, b) {
-    return b.score - a.score;
-  });
+  console.log(dataTab);
 
-  // set the dimensions and margins of the graph
-  var margin = { top: 20, right: 30, bottom: 40, left: 90 },
-    width = 460 - margin.left - margin.right,
-    height = 400 - margin.top - margin.bottom;
+  //mettre nom des champions dans des paragraphes
+  /*for (var i = 0; i < dataTab.length; ++i) {
+    var p = document.createElement("p");
+    p.innerHTML = dataTab[i].champion;
+    divChamp.appendChild(p);
+  }
+*/
+  // Largeur et hauteur du graphique
+  var width = 1200;
+  var height = 1000;
 
-  // append the svg object to the body of the page
-  var svg = d3
-    .select("#barChart2")
-    .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-    .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+  // Création de l'échelle pour l'axe des x
+  var x = d3
+    .scaleLinear()
+    .domain([
+      0,
+      d3.max(dataTab, function (d) {
+        return d.score;
+      }),
+    ])
+    .range([0, width]);
 
-  // Add X axis
-  var x = d3.scaleLinear().domain([0, 13000]).range([0, width]);
-  svg
-    .append("g")
-    .attr("transform", "translate(0," + height + ")")
-    .call(d3.axisBottom(x))
-    .selectAll("text")
-    .attr("transform", "translate(-10,0)rotate(-45)")
-    .style("text-anchor", "end");
-
-  // Y axis
+  // Création de l'échelle pour l'axe des y
   var y = d3
     .scaleBand()
-    .range([0, height])
     .domain(
-      data.map(function (d) {
+      dataTab.map(function (d) {
         return d.champion;
       })
     )
+    .range([0, height])
     .padding(0.1);
-  svg.append("g").call(d3.axisLeft(y));
 
-  //Bars
+  // Création de l'élément SVG pour le graphique
+  var svg = d3
+    .select("#barChart")
+    .append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+  // Ajout des barres
   svg
-    .selectAll("myRect")
-    .data(data)
+    .selectAll("rect")
+    .data(dataTab)
     .enter()
     .append("rect")
-    .attr("x", x(0))
+    //transitions
+    .transition()
+    .duration(800)
+    .delay(function (d, i) {
+      return i * 100;
+    })
+
     .attr("y", function (d) {
       return y(d.champion);
     })
     .attr("width", function (d) {
-      return x(d.score);
+      return x(d.score) / 1.5;
     })
-    .attr("height", y.bandwidth())
-    .attr("fill", "#69b3a2");
+    .attr("height", y.bandwidth());
+  svg
+    .selectAll("text")
+    .data(dataTab)
+    .enter()
+    .append("text")
+    .attr("x", function (d) {
+      return x(1);
+    })
+    .attr("y", function (d) {
+      return y(d.champion) + 20;
+    })
+    .text(function (d) {
+      return d.champion;
+    });
 
-  // .attr("x", function(d) { return x(d.Country); })
-  // .attr("y", function(d) { return y(d.Value); })
-  // .attr("width", x.bandwidth())
-  // .attr("height", function(d) { return height - y(d.Value); })
-  // .attr("fill", "#69b3a2")
+  //ajoute score a droite
+  svg
+    .selectAll(".label")
+    .data(dataTab)
+    .enter()
+    .append("text")
+    .attr("class", "label")
+    .attr("x", function (d) {
+      return x(d.score) / 1.47;
+    })
+    .attr("y", function (d) {
+      return y(d.champion) + 20;
+    })
+    .text(function (d) {
+      return d.score + "%";
+    });
+
+  //mettre rectangle en bleu
+  d3.selectAll("rect").style("fill", "#025940");
+  //mettre texte en blanc
+  d3.selectAll("text").style("fill", "white");
 }
 
-export { BarChart };
+export { barChartScore };

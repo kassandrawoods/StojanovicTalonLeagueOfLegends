@@ -16,7 +16,10 @@ function createBarChartScore(donnees) {
 
   // mettre nom des champions et leur score dans un tableau
   var dataTab = [];
-  for (var i = 0; i < donnees.length; ++i) {
+  donnees.sort(function (a, b) {
+    return b.Score - a.Score;
+  });
+  for (var i = 0; i < 25; ++i) {
     //si le nom existe comme champion, ne pas rajouter dans le tableau
     if (!dataTab.some((e) => e.champion === donnees[i].Name)) {
       dataTab.push({
@@ -27,21 +30,17 @@ function createBarChartScore(donnees) {
   }
 
   console.log(dataTab);
-  //trier données par score
-  dataTab.sort(function (a, b) {
-    return b.score - a.score;
-  });
 
   //mettre nom des champions dans des paragraphes
-  for (var i = 0; i < dataTab.length; ++i) {
+  /*for (var i = 0; i < dataTab.length; ++i) {
     var p = document.createElement("p");
     p.innerHTML = dataTab[i].champion;
     divChamp.appendChild(p);
   }
-
+*/
   // Largeur et hauteur du graphique
   var width = 1200;
-  var height = 5000;
+  var height = 1000;
 
   // Création de l'échelle pour l'axe des x
   var x = d3
@@ -78,6 +77,13 @@ function createBarChartScore(donnees) {
     .data(dataTab)
     .enter()
     .append("rect")
+    //transitions
+    .transition()
+    .duration(800)
+    .delay(function (d, i) {
+      return i * 100;
+    })
+
     .attr("y", function (d) {
       return y(d.champion);
     })
@@ -85,13 +91,28 @@ function createBarChartScore(donnees) {
       return x(d.score) / 1.5;
     })
     .attr("height", y.bandwidth());
-
-  //ajoute score a droite
   svg
     .selectAll("text")
     .data(dataTab)
     .enter()
     .append("text")
+    .attr("x", function (d) {
+      return x(1);
+    })
+    .attr("y", function (d) {
+      return y(d.champion) + 20;
+    })
+    .text(function (d) {
+      return d.champion;
+    });
+
+  //ajoute score a droite
+  svg
+    .selectAll(".label")
+    .data(dataTab)
+    .enter()
+    .append("text")
+    .attr("class", "label")
     .attr("x", function (d) {
       return x(d.score) / 1.47;
     })
@@ -103,14 +124,12 @@ function createBarChartScore(donnees) {
     });
 
   //mettre rectangle en bleu
-  d3.selectAll("rect").style("fill", "rgb(11, 30, 227)");
+  d3.selectAll("rect").style("fill", "#025940");
   //mettre texte en blanc
   d3.selectAll("text").style("fill", "white");
 }
 
 function createBarChartBann(donnees) {
-  //vider divChamp
-  divChamp.innerHTML = "";
   //creer svg pour le graphique et suppression du graphique precedent
   d3.select("#barChart").selectAll("svg").remove();
 
@@ -121,26 +140,28 @@ function createBarChartBann(donnees) {
     .attr("height", height);
 
   // mettre nom des champions et leur score dans un tableau
+  //trier tableau par BanPerc
+  //trier par BanPerc
+  donnees.sort(function (a, b) {
+    return b.BanPerc - a.BanPerc;
+  });
+
+  var dataTot = [];
   var dataTab = [];
-  for (var i = 0; i < donnees.length; ++i) {
+
+  for (var i = 0; i < donnees.length; i++) {
     //si le nom existe comme champion, ne pas rajouter dans le tableau
-    if (!dataTab.some((e) => e.champion === donnees[i].Name)) {
-      dataTab.push({
+    if (!dataTot.some((e) => e.champion === donnees[i].Name)) {
+      dataTot.push({
         champion: donnees[i].Name,
         bann: donnees[i].BanPerc,
       });
     }
   }
 
-  //trier données par score
-  dataTab.sort(function (a, b) {
-    return b.bann - a.bann;
-  });
-
-  for (var i = 0; i < dataTab.length; ++i) {
-    var p = document.createElement("p");
-    p.innerHTML = dataTab[i].champion;
-    divChamp.appendChild(p);
+  //remplir les 25 premiers champions du tableau
+  for (var i = 0; i < 25; ++i) {
+    dataTab.push(dataTot[i]);
   }
 
   //afficher tableau dans la console
@@ -148,7 +169,7 @@ function createBarChartBann(donnees) {
 
   // Largeur et hauteur du graphique
   var width = 1200;
-  var height = 5000;
+  var height = 1000;
 
   // Création de l'échelle pour l'axe des x
   var x = d3
@@ -185,6 +206,11 @@ function createBarChartBann(donnees) {
     .data(dataTab)
     .enter()
     .append("rect")
+    .transition()
+    .duration(800)
+    .delay(function (d, i) {
+      return i * 100;
+    })
     .attr("y", function (d) {
       return y(d.champion);
     })
@@ -192,12 +218,28 @@ function createBarChartBann(donnees) {
       return x(d.bann) / 1.5;
     })
     .attr("height", y.bandwidth());
-  //ajoute score a droite des barres et champion a gauche
+
   svg
     .selectAll("text")
     .data(dataTab)
     .enter()
     .append("text")
+    .attr("x", function (d) {
+      return x(1);
+    })
+    .attr("y", function (d) {
+      return y(d.champion) + 20;
+    })
+    .text(function (d) {
+      return d.champion;
+    });
+
+  svg
+    .selectAll(".label")
+    .data(dataTab)
+    .enter()
+    .append("text")
+    .attr("class", "label")
     .attr("x", function (d) {
       return x(d.bann) / 1.47;
     })
@@ -209,14 +251,12 @@ function createBarChartBann(donnees) {
     });
 
   //mettre rectangle en bleu
-  d3.selectAll("rect").style("fill", "rgb(11, 30, 227)");
+  d3.selectAll("rect").style("fill", "#044040");
   //mettre texte en blanc
   d3.selectAll("text").style("fill", "white");
 }
 
 function createBarChartPick(donnees) {
-  //vider divChamp
-  divChamp.innerHTML = "";
   //creer svg pour le graphique et suppression du graphique precedent
   d3.select("#barChart").selectAll("svg").remove();
 
@@ -226,26 +266,27 @@ function createBarChartPick(donnees) {
     .attr("width", width)
     .attr("height", height);
 
+  //trier par PickPerc
+  donnees.sort(function (a, b) {
+    return b.PickPerc - a.PickPerc;
+  });
+
   // mettre nom des champions et leur score dans un tableau
+  var dataTot = [];
   var dataTab = [];
-  for (var i = 0; i < donnees.length; ++i) {
+  for (var i = 0; i < 25; ++i) {
     //si le nom existe comme champion, ne pas rajouter dans le tableau
-    if (!dataTab.some((e) => e.champion === donnees[i].Name)) {
-      dataTab.push({
+    if (!dataTot.some((e) => e.champion === donnees[i].Name)) {
+      dataTot.push({
         champion: donnees[i].Name,
         pick: donnees[i].PickPerc,
       });
     }
   }
-  //trier données par score
-  dataTab.sort(function (a, b) {
-    return b.pick - a.pick;
-  });
 
-  for (var i = 0; i < dataTab.length; ++i) {
-    var p = document.createElement("p");
-    p.innerHTML = dataTab[i].champion;
-    divChamp.appendChild(p);
+  //mettre les 25 premiers champions dans le tableau
+  for (var i = 0; i < 25; ++i) {
+    dataTab.push(dataTot[i]);
   }
 
   //afficher tableau dans la console
@@ -253,7 +294,7 @@ function createBarChartPick(donnees) {
 
   // Largeur et hauteur du graphique
   var width = 1200;
-  var height = 5000;
+  var height = 1000;
 
   // Création de l'échelle pour l'axe des x
   var x = d3
@@ -290,6 +331,11 @@ function createBarChartPick(donnees) {
     .data(dataTab)
     .enter()
     .append("rect")
+    .transition()
+    .duration(2000)
+    .delay(function (d, i) {
+      return i * 100;
+    })
     .attr("y", function (d) {
       return y(d.champion);
     })
@@ -297,12 +343,29 @@ function createBarChartPick(donnees) {
       return x(d.pick) / 1.5;
     })
     .attr("height", y.bandwidth());
-  //ajoute score a droite des barres et champion a gauche
+
+  //nom champion
   svg
     .selectAll("text")
     .data(dataTab)
     .enter()
     .append("text")
+    .attr("x", function (d) {
+      return x(0.5);
+    })
+    .attr("y", function (d) {
+      return y(d.champion) + 20;
+    })
+    .text(function (d) {
+      return d.champion;
+    });
+  //ajoute score a droite des barres et champion a gauche
+  svg
+    .selectAll(".label")
+    .data(dataTab)
+    .enter()
+    .append("text")
+    .attr("class", "label")
     .attr("x", function (d) {
       return x(d.pick) / 1.47;
     })
@@ -315,7 +378,7 @@ function createBarChartPick(donnees) {
     });
 
   //mettre rectangle en bleu
-  d3.selectAll("rect").style("fill", "rgb(11, 30, 227)");
+  d3.selectAll("rect").style("fill", "#62A632");
   //mettre texte en blanc
   d3.selectAll("text").style("fill", "white");
 }

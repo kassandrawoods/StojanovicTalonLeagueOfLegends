@@ -71,7 +71,7 @@ p {
 
 }
 
-h1, h2, h3, h4 {
+h1, h2, h3, h4, a{
     color : goldenrod;
     text-align: center;
     font-family: 'Beaufort for LOL';
@@ -91,7 +91,6 @@ h1, h2, h3, h4 {
 }
 
 #barChart {
-    margin-top: -150px;
     margin-left: 10%;
 
 }
@@ -132,7 +131,6 @@ h1, h2, h3, h4 {
     width: 100%;
     height: 100%;
     position: relative;
-    top:50px;
     display:flex;
     justify-content: space-between;
     align-items: center;
@@ -140,10 +138,10 @@ h1, h2, h3, h4 {
 
 #pieChart {
     margin-left: 120px;
+    height: auto;
 }
 
   #radarChart {
-    margin-top: 100px;
     margin-right: 80px;
 }
 
@@ -153,10 +151,11 @@ h1, h2, h3, h4 {
 }
 
   #explicationRadarChart {
-    margin-top: 100px;
     margin-left: 120px; 
     margin-right: 90px;
   }
+
+
 
 
 .buttons {
@@ -180,7 +179,9 @@ h1, h2, h3, h4 {
     margin-right: auto;
 }
 
-
+.btnRole {
+  top:25px;
+}
 
 button.role{
     color:white;
@@ -285,6 +286,46 @@ button.map:hover span:after {
     width: 25%;
     font-size: 16px;
     border-radius: 12px;
+}
+
+button.arriere {
+  display: flex;
+    position: relative;
+    top: 25px;
+    margin-left: 10%;
+    justify-content: center;
+    background-color: rgb(11, 198, 227); color: white; 
+    border : none;
+    padding: 14px 14px;
+    font-size: 16px;
+    border-radius: 12px;
+}
+
+
+
+button.arriere span {
+  cursor: "/img/normal";
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+button.arriere span:after{
+  content: '\00ab';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  left: 20px;
+  transition: 0.5s;
+}
+
+button.arriere:hover span {
+  padding-left: 25px;
+}
+
+button.arriere:hover span:after {
+  opacity: 1;
+  left: 0;
 }
 
 
@@ -404,9 +445,12 @@ button.stats:hover::before, button.stats:hover::after{
 
   #nom p {
     text-align: right;
- height: min-content;
+    margin-top: 20px;
+    margin-bottom: 20px;
+ height: 15px;
 
     font-size: 15px;
+    
   }
 
   #tableau {

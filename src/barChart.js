@@ -1,11 +1,10 @@
 import * as d3 from "d3";
 import { csv } from "d3-fetch";
 
-const divChamp = document.getElementById("nom");
+const divChamp = document.getElementById("titre");
 
-function createBarChartScore(donnees) {
-  //vider divChamp
-  divChamp.innerHTML = "";
+function createBarChartScore(donnees, role) {
+  divChamp.innerHTML = "LES 25 MEILLEURS CHAMPIONS " + role;
   d3.select("#barChart").selectAll("svg").remove();
   //creer svg pour le graphique
   var svg = d3
@@ -15,18 +14,30 @@ function createBarChartScore(donnees) {
     .attr("height", height);
 
   // mettre nom des champions et leur score dans un tableau
-  var dataTab = [];
+
   donnees.sort(function (a, b) {
     return b.Score - a.Score;
   });
-  for (var i = 0; i < 25; ++i) {
+
+  var dataTot = [];
+  var dataTab = [];
+
+  for (var i = 0; i < donnees.length; i++) {
     //si le nom existe comme champion, ne pas rajouter dans le tableau
-    if (!dataTab.some((e) => e.champion === donnees[i].Name)) {
-      dataTab.push({
+    if (
+      !dataTot.some((e) => e.champion === donnees[i].Name) &&
+      donnees[i].Role === role
+    ) {
+      dataTot.push({
         champion: donnees[i].Name,
         score: donnees[i].Score,
       });
     }
+  }
+
+  //remplir les 25 premiers champions du tableau
+  for (var i = 0; i < 25; ++i) {
+    dataTab.push(dataTot[i]);
   }
 
   console.log(dataTab);
@@ -129,7 +140,8 @@ function createBarChartScore(donnees) {
   d3.selectAll("text").style("fill", "white");
 }
 
-function createBarChartBann(donnees) {
+function createBarChartBann(donnees, role) {
+  divChamp.innerHTML = "LES 25 CHAMPIONS " + role + " LES PLUS BANNIS";
   //creer svg pour le graphique et suppression du graphique precedent
   d3.select("#barChart").selectAll("svg").remove();
 
@@ -151,7 +163,10 @@ function createBarChartBann(donnees) {
 
   for (var i = 0; i < donnees.length; i++) {
     //si le nom existe comme champion, ne pas rajouter dans le tableau
-    if (!dataTot.some((e) => e.champion === donnees[i].Name)) {
+    if (
+      !dataTot.some((e) => e.champion === donnees[i].Name) &&
+      donnees[i].Role === role
+    ) {
       dataTot.push({
         champion: donnees[i].Name,
         bann: donnees[i].BanPerc,
@@ -256,9 +271,10 @@ function createBarChartBann(donnees) {
   d3.selectAll("text").style("fill", "white");
 }
 
-function createBarChartPick(donnees) {
+function createBarChartPick(donnees, role) {
   //creer svg pour le graphique et suppression du graphique precedent
   d3.select("#barChart").selectAll("svg").remove();
+  divChamp.innerHTML = "LES 25 CHAMPIONS " + role + " LES PLUS PICKS";
 
   var svg = d3
     .select("#barChart")
@@ -274,9 +290,12 @@ function createBarChartPick(donnees) {
   // mettre nom des champions et leur score dans un tableau
   var dataTot = [];
   var dataTab = [];
-  for (var i = 0; i < 25; ++i) {
+  for (var i = 0; i < donnees.length; ++i) {
     //si le nom existe comme champion, ne pas rajouter dans le tableau
-    if (!dataTot.some((e) => e.champion === donnees[i].Name)) {
+    if (
+      !dataTot.some((e) => e.champion === donnees[i].Name) &&
+      donnees[i].Role === role
+    ) {
       dataTot.push({
         champion: donnees[i].Name,
         pick: donnees[i].PickPerc,

@@ -7,13 +7,25 @@ import {
   createBarChartBann,
   createBarChartPick,
 } from "./barChart";
-import { barChartScore } from "./alternatif";
+import {
+  topBarchart,
+  adcBarchart,
+  supportBarchart,
+  midBarchart,
+  jungleBarchart,
+} from "./alternatif";
 
 const btnScore = document.getElementById("score");
 const btnBann = document.getElementById("ban");
 const btnPick = document.getElementById("pick");
 
 const titre = document.getElementById("titre");
+
+const btnTop = document.getElementById("top");
+const btnSupport = document.getElementById("support");
+const btnMid = document.getElementById("mid");
+const btnJungle = document.getElementById("jungle");
+const btnAdc = document.getElementById("adc");
 
 // -------------------- DATA --------------------
 // -------------------- DATA --------------------
@@ -47,7 +59,7 @@ csv("/data/League of Legends Champion Stats 12.23.csv")
     // -------------------- GRAPHIQUE BARRE -------------------- //
 
     //si clique sur btnScore, afficher graphique score
-    btnScore.addEventListener("click", function () {
+    /*btnScore.addEventListener("click", function () {
       //changer titre
       titre.innerHTML = "SCORE DES 25 MEILLEURS CHAMPIONS";
       createBarChartScore(cleanData);
@@ -61,10 +73,30 @@ csv("/data/League of Legends Champion Stats 12.23.csv")
     btnPick.addEventListener("click", function () {
       titre.innerHTML = "TAUX DE PICK DES 25 MEILLEURS CHAMPIONS";
       createBarChartPick(cleanData);
+    });*/
+
+    btnTop.addEventListener("click", function () {
+      //changer couleur bouton cliqué
+      if (btnTop.style.backgroundColor == "rgb(11, 198, 227)") {
+        btnTop.style.backgroundColor = "blue";
+      }
+      if (btnTop.style.backgroundColor == "rgb(255, 255, 255)") {
+        btnTop.style.backgroundColor = "rgb(11, 198, 227)";
+      }
+
+      topBarchart(cleanData);
     });
 
-    roleTop.addEventListener("click", function () {
-      titre.innerHTML = "SCORE DES 25 MEILLEURS CHAMPIONS";
-      barChartScore(cleanData, "TOP");
+    btnAdc.addEventListener("click", function () {
+      adcBarchart(cleanData);
+    });
+    btnSupport.addEventListener("click", function () {
+      supportBarchart(cleanData);
+    });
+    btnMid.addEventListener("click", function () {
+      midBarchart(cleanData);
+    });
+    btnJungle.addEventListener("click", function () {
+      jungleBarchart(cleanData);
     });
   });

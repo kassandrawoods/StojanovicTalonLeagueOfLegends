@@ -71,12 +71,12 @@ p {
 
 }
 
-h1, h2, h3, h4, a{
+h1, h2, h3, h4 {
     color : goldenrod;
     text-align: center;
     font-family: 'Beaufort for LOL';
 }
-
+ 
 #frame1 {
     display : flex;
     position: relative;
@@ -92,6 +92,7 @@ h1, h2, h3, h4, a{
 
 #barChart {
     margin-left: 10%;
+    margin-top: -150px;
 
 }
 
@@ -179,9 +180,7 @@ h1, h2, h3, h4, a{
     margin-right: auto;
 }
 
-.btnRole {
-  top:25px;
-}
+
 
 button.role{
     color:white;
@@ -473,7 +472,26 @@ button.stats:hover::before, button.stats:hover::after{
 
 
 
+#buttonsContainer {
+  display: flex;
+  justify-content: space-around;
+  height: min-content;
+  width: auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  
+}
 
+#boutonStats {
+  visibility: hidden;
+  display: flex;
+  justify-content: space-around;
+}
+
+#tableau {
+  display: flex;
+  flex-direction: column;
+}
 
 
 

@@ -7,8 +7,7 @@ import {
   createBarChartPick,
 } from "./barChart";
 
-//commit
-//commit ihihi
+const fonctionne = "fonctionne";
 
 const btnTop = document.getElementById("top-role");
 const boutonStats = document.getElementById("boutonStats");

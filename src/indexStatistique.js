@@ -76,14 +76,6 @@ csv("/data/League of Legends Champion Stats 12.23.csv")
     });*/
 
     btnTop.addEventListener("click", function () {
-      //changer couleur bouton cliqué
-      if (btnTop.style.backgroundColor == "rgb(11, 198, 227)") {
-        btnTop.style.backgroundColor = "blue";
-      }
-      if (btnTop.style.backgroundColor == "rgb(255, 255, 255)") {
-        btnTop.style.backgroundColor = "rgb(11, 198, 227)";
-      }
-
       topBarchart(cleanData);
     });
 

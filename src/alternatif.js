@@ -5,6 +5,7 @@ import {
   createBarChartScore,
   createBarChartBann,
   createBarChartPick,
+  createBarCharWinrate,
 } from "./barChart";
 
 const fonctionne = "fonctionne";
@@ -33,6 +34,11 @@ function topBarchart(donnees) {
   btnBann.addEventListener("click", function () {
     createBarChartBann(donnees, "TOP");
   });
+
+  const btnWinrate = document.getElementById("winrate");
+  btnWinrate.addEventListener("click", function () {
+    createBarCharWinrate(donnees, "TOP");
+  });
 }
 
 function adcBarchart(donnees) {
@@ -53,6 +59,10 @@ function adcBarchart(donnees) {
   const btnBann = document.getElementById("ban");
   btnBann.addEventListener("click", function () {
     createBarChartBann(donnees, "ADC");
+  });
+  const btnWinrate = document.getElementById("winrate");
+  btnWinrate.addEventListener("click", function () {
+    createBarCharWinrate(donnees, "ADC");
   });
 }
 
@@ -75,6 +85,11 @@ function supportBarchart(donnees) {
   btnBann.addEventListener("click", function () {
     createBarChartBann(donnees, "SUPPORT");
   });
+
+  const btnWinrate = document.getElementById("winrate");
+  btnWinrate.addEventListener("click", function () {
+    createBarCharWinrate(donnees, "SUPPORT");
+  });
 }
 
 function jungleBarchart(donnees) {
@@ -96,6 +111,11 @@ function jungleBarchart(donnees) {
   btnBann.addEventListener("click", function () {
     createBarChartBann(donnees, "JUNGLE");
   });
+
+  const btnWinrate = document.getElementById("winrate");
+  btnWinrate.addEventListener("click", function () {
+    createBarCharWinrate(donnees, "JUNGLE");
+  });
 }
 
 function midBarchart(donnees) {
@@ -116,6 +136,11 @@ function midBarchart(donnees) {
   const btnBann = document.getElementById("ban");
   btnBann.addEventListener("click", function () {
     createBarChartBann(donnees, "MID");
+  });
+
+  const btnWinrate = document.getElementById("winrate");
+  btnWinrate.addEventListener("click", function () {
+    createBarCharWinrate(donnees, "MID");
   });
 }
 

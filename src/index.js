@@ -189,6 +189,7 @@ map.addEventListener("mouseout", () => {
 const btnScore = document.getElementById("score");
 const btnBann = document.getElementById("ban");
 const btnPick = document.getElementById("pick");
+const btnWinRate = document.getElementById("winrate");
 
 const titre = document.getElementById("titre");
 
@@ -197,6 +198,8 @@ const btnSupport2 = document.getElementById("support2");
 const btnMid2 = document.getElementById("mid2");
 const btnJungle2 = document.getElementById("jungle2");
 const btnAdc2 = document.getElementById("adc2");
+
+const boutonStats = document.getElementById("boutonStats");
 
 // -------------------- DATA --------------------
 // -------------------- DATA --------------------
@@ -247,19 +250,29 @@ csv("/data/League of Legends Champion Stats 12.23.csv")
     });*/
 
     btnTop2.addEventListener("click", function () {
+      const divTitre = document.getElementById("titre");
+      divTitre.innerHTML = "";
       topBarchart(cleanData);
     });
 
     btnAdc2.addEventListener("click", function () {
+      const divTitre = document.getElementById("titre");
+      divTitre.innerHTML = "";
       adcBarchart(cleanData);
     });
     btnSupport2.addEventListener("click", function () {
+      const divTitre = document.getElementById("titre");
+      divTitre.innerHTML = "";
       supportBarchart(cleanData);
     });
     btnMid2.addEventListener("click", function () {
+      const divTitre = document.getElementById("titre");
+      divTitre.innerHTML = "";
       midBarchart(cleanData);
     });
     btnJungle2.addEventListener("click", function () {
+      const divTitre = document.getElementById("titre");
+      divTitre.innerHTML = "";
       jungleBarchart(cleanData);
     });
   });

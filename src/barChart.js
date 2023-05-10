@@ -402,4 +402,140 @@ function createBarChartPick(donnees, role) {
   d3.selectAll("text").style("fill", "white");
 }
 
-export { createBarChartScore, createBarChartBann, createBarChartPick };
+function createBarCharWinrate(donnees, role) {
+  //creer svg pour le graphique et suppression du graphique precedent
+  d3.select("#barChart").selectAll("svg").remove();
+  divChamp.innerHTML = "LES 25 CHAMPIONS " + role + " QUI GAGNENT LE PLUS";
+
+  var svg = d3
+    .select("#barChart")
+    .append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+  //trier par PickPerc
+  donnees.sort(function (a, b) {
+    return b.WinPerc - a.WinPerc;
+  });
+
+  // mettre nom des champions et leur score dans un tableau
+  var dataTot = [];
+  var dataTab = [];
+  for (var i = 0; i < donnees.length; ++i) {
+    //si le nom existe comme champion, ne pas rajouter dans le tableau
+    if (
+      !dataTot.some((e) => e.champion === donnees[i].Name) &&
+      donnees[i].Role === role
+    ) {
+      dataTot.push({
+        champion: donnees[i].Name,
+        winrate: donnees[i].WinPerc,
+      });
+    }
+  }
+
+  //mettre les 25 premiers champions dans le tableau
+  for (var i = 0; i < 25; ++i) {
+    dataTab.push(dataTot[i]);
+  }
+
+  //afficher tableau dans la console
+  console.log(dataTab);
+
+  // Largeur et hauteur du graphique
+  var width = 1200;
+  var height = 1000;
+
+  // Création de l'échelle pour l'axe des x
+  var x = d3
+    .scaleLinear()
+    .domain([
+      0,
+      d3.max(dataTab, function (d) {
+        return d.winrate;
+      }),
+    ])
+    .range([0, width]);
+
+  // Création de l'échelle pour l'axe des y
+  var y = d3
+    .scaleBand()
+    .domain(
+      dataTab.map(function (d) {
+        return d.champion;
+      })
+    )
+    .range([0, height])
+    .padding(0.1);
+
+  // Création de l'élément SVG pour le graphique
+  var svg = d3
+    .select("#barChart")
+    .append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+  // Ajout des barres
+  svg
+    .selectAll("rect")
+    .data(dataTab)
+    .enter()
+    .append("rect")
+    .transition()
+    .duration(2000)
+    .delay(function (d, i) {
+      return i * 100;
+    })
+    .attr("y", function (d) {
+      return y(d.champion);
+    })
+    .attr("width", function (d) {
+      return x(d.winrate) / 1.5;
+    })
+    .attr("height", y.bandwidth());
+
+  //nom champion
+  svg
+    .selectAll("text")
+    .data(dataTab)
+    .enter()
+    .append("text")
+    .attr("x", function (d) {
+      return x(0);
+    })
+    .attr("y", function (d) {
+      return y(d.champion) + 20;
+    })
+    .text(function (d) {
+      return d.champion;
+    });
+  //ajoute score a droite des barres et champion a gauche
+  svg
+    .selectAll(".label")
+    .data(dataTab)
+    .enter()
+    .append("text")
+    .attr("class", "label")
+    .attr("x", function (d) {
+      return x(d.winrate) / 1.47;
+    })
+    .attr("y", function (d) {
+      return y(d.champion) + 20;
+    })
+    .text(function (d) {
+      //afficher champion et score
+      return d.winrate + "%";
+    });
+
+  //mettre rectangle en bleu
+  d3.selectAll("rect").style("fill", "#62A632");
+  //mettre texte en blanc
+  d3.selectAll("text").style("fill", "white");
+}
+
+export {
+  createBarChartScore,
+  createBarChartBann,
+  createBarChartPick,
+  createBarCharWinrate,
+};

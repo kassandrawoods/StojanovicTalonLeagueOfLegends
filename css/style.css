@@ -96,13 +96,6 @@ h1, h2, h3, h4 {
 
 }
 
-.boutonStats {
-    position: relative;
-    top: 25px;
-    display: flex;
-    justify-content: space-around;
-    height: min-content;
-}
 
 
 
@@ -184,7 +177,7 @@ h1, h2, h3, h4 {
 
 
 button.role{
-    color:white;
+    color:black;
     background:rgb(11, 198, 227);
     padding: 15px 30px 15px 30px;
     position: relative;
@@ -238,7 +231,7 @@ button.map{
     justify-content: center;
     margin-left: auto;
     margin-right: auto;
-    background-color: rgb(11, 198, 227); color: white; 
+    background-color: rgb(11, 198, 227); color: black; 
     border : none;
     padding: 14px 14px;
     width: 50%;
@@ -280,7 +273,7 @@ button.map:hover span:after {
     justify-content: center;
     margin-left: auto;
     margin-right: auto;
-    background-color: rgb(11, 198, 227); color: white; 
+    background-color: rgb(11, 198, 227); color: black; 
     border : none;
     padding: 14px 14px;
     width: 25%;
@@ -294,7 +287,7 @@ button.arriere {
     top: 25px;
     margin-left: 10%;
     justify-content: center;
-    background-color: rgb(11, 198, 227); color: white; 
+    background-color: rgb(11, 198, 227); color: black; 
     border : none;
     padding: 14px 14px;
     font-size: 16px;
@@ -372,7 +365,7 @@ a:link {
 }
 
 a:visited {
-    color: white;
+    color: black;
 }
 
 p#explication {
@@ -396,7 +389,7 @@ img#map-image {
   
 
 button.stats{
-    color:white;
+    color:black;
     background:rgb(11, 198, 227);
     padding: 15px 30px 15px 30px;
     position: relative;
@@ -404,31 +397,7 @@ button.stats{
     font-family: Spiegel;
     text-transform: uppercase;
 }
-button.stats::before {
-    content:'';
-    border-bottom:15px solid #030608;
-    border-left: 12px solid transparent;
-    position: absolute;
-    right:0;
-    bottom: 0
-  }
 
-button.stats::after {
-    content:'';
-    border-top:15px solid #030608;
-    border-right: 12px solid transparent;
-    position: absolute;
-    left:0;
-    top: 0
-  }
-
-/*when the mouse is over the button remove the after and before pseudo elements */
-button.stats:hover::before, button.stats:hover::after{
-    border-bottom: 0;
-    border-left: 0;
-    border-top: 0;
-    border-right: 0;
-  }
 
   #titre {
     margin-top: 60px;
@@ -485,6 +454,9 @@ button.stats:hover::before, button.stats:hover::after{
   visibility: hidden;
   display: flex;
   float: left;
+  justify-content: space-around;
+  height: min-content;
+
 }
 
 #tableau {
@@ -493,5 +465,9 @@ button.stats:hover::before, button.stats:hover::after{
 }
 
 
+.icon {
+  width: 20px; /* Ajustez la taille selon vos besoins */
+  height: 20px;
+  margin: 0px 10px 0px 10px;
 
-
+}

@@ -1,7 +1,20 @@
 // -------------------- IMPPORT --------------------
-
 import * as d3 from "d3";
 import { csv } from "d3-fetch";
+import { createCamembert } from "./camembert";
+import { createRadarChart } from "./radarChart";
+import {
+  createBarChartScore,
+  createBarChartBann,
+  createBarChartPick,
+} from "./barChart";
+import {
+  topBarchart,
+  adcBarchart,
+  supportBarchart,
+  midBarchart,
+  jungleBarchart,
+} from "./alternatif";
 
 // -------------------- DOM --------------------
 
@@ -61,7 +74,7 @@ des sorts de balises et en prenant des objectifs stratégiques tels que les tour
  des dégâts massifs à l'ennemi. Le top est un rôle important qui nécessite des compétences en matière de combat, de stratégie et de 
  mouvement pour aider son équipe à remporter la victoire.`;
 
- const textExplicationRetourBouton = `Il y a cinq rôles principaux dans League of Legends :<br>
+const textExplicationRetourBouton = `Il y a cinq rôles principaux dans League of Legends :<br>
 
      <br><strong>Top</strong> : placé sur la voie supérieure, le top doit affronter l'adversaire direct et aider son équipe en contrôlant la carte et en prenant des objectifs stratégiques.<br>
      
@@ -71,96 +84,95 @@ des sorts de balises et en prenant des objectifs stratégiques tels que les tour
      
      <br><strong>ADC</strong> : placé dans la voie du bas avec le support, l'ADC est un tireur qui inflige des dégâts à distance à l'ennemi et doit être protégé par son support pour maximiser ses dégâts.<br>
      
-     <br><strong>Support</strong> : placé dans la voie du bas avec l'ADC, le support aide l'équipe en fournissant des soins, des boucliers et des contrôles de foule à ses coéquipiers, en contrôlant la carte et en aidant à prendre des objectifs stratégiques`
+     <br><strong>Support</strong> : placé dans la voie du bas avec l'ADC, le support aide l'équipe en fournissant des soins, des boucliers et des contrôles de foule à ses coéquipiers, en contrôlant la carte et en aidant à prendre des objectifs stratégiques`;
 
-     // -------------------- BOUTONS ROLE --------------------
+// -------------------- BOUTONS ROLE --------------------
 
-  let isExpanded = false;
-  let previousButton = null;
+let isExpanded = false;
+let previousButton = null;
 
-  const expandButton = (button, text) => {
-    button.style.backgroundColor = "rgb(11, 150, 227)";
-    textExplication.innerHTML = text;
-    if (previousButton !== null && previousButton !== button) {
-      previousButton.style.backgroundColor = "rgb(11, 198, 227)";
-    }
-    previousButton = button;
-    isExpanded = true;
-  };
+const expandButton = (button, text) => {
+  button.style.backgroundColor = "rgb(11, 150, 227)";
+  textExplication.innerHTML = text;
+  if (previousButton !== null && previousButton !== button) {
+    previousButton.style.backgroundColor = "rgb(11, 198, 227)";
+  }
+  previousButton = button;
+  isExpanded = true;
+};
 
-  const resetButton = (button, text) => {
-    button.style.backgroundColor = "rgb(11, 198, 227)";
-    textExplication.innerHTML = text;
-    isExpanded = false;
-  };
+const resetButton = (button, text) => {
+  button.style.backgroundColor = "rgb(11, 198, 227)";
+  textExplication.innerHTML = text;
+  isExpanded = false;
+};
 
-  btnAdc.addEventListener("click", () => {
-    if (!isExpanded) {
+btnAdc.addEventListener("click", () => {
+  if (!isExpanded) {
+    expandButton(btnAdc, textADC);
+  } else {
+    if (previousButton === btnAdc) {
+      resetButton(btnAdc, textExplicationRetourBouton);
+    } else {
+      resetButton(previousButton, textADC);
       expandButton(btnAdc, textADC);
-    } else {
-      if (previousButton === btnAdc) {
-        resetButton(btnAdc, textExplicationRetourBouton);
-      } else {
-        resetButton(previousButton, textADC);
-        expandButton(btnAdc, textADC);
-      }
     }
-  });
+  }
+});
 
-  btnSupport.addEventListener("click", () => {
-    if (!isExpanded) {
+btnSupport.addEventListener("click", () => {
+  if (!isExpanded) {
+    expandButton(btnSupport, textSupport);
+  } else {
+    if (previousButton === btnSupport) {
+      resetButton(btnSupport, textExplicationRetourBouton);
+    } else {
+      resetButton(previousButton, textSupport);
       expandButton(btnSupport, textSupport);
-    } else {
-      if (previousButton === btnSupport) {
-        resetButton(btnSupport, textExplicationRetourBouton);
-      } else {
-        resetButton(previousButton, textSupport);
-        expandButton(btnSupport, textSupport);
-      }
     }
-  });
+  }
+});
 
-  btnMid.addEventListener("click", () => {
-    if (!isExpanded) {
+btnMid.addEventListener("click", () => {
+  if (!isExpanded) {
+    expandButton(btnMid, textMid);
+  } else {
+    if (previousButton === btnMid) {
+      resetButton(btnMid, textExplicationRetourBouton);
+    } else {
+      resetButton(previousButton, textMid);
       expandButton(btnMid, textMid);
-    } else {
-      if (previousButton === btnMid) {
-        resetButton(btnMid, textExplicationRetourBouton);
-      } else {
-        resetButton(previousButton, textMid);
-        expandButton(btnMid, textMid);
-      }
     }
-  });
+  }
+});
 
-  btnTop.addEventListener("click", () => {
-    if (!isExpanded) {
+btnTop.addEventListener("click", () => {
+  if (!isExpanded) {
+    expandButton(btnTop, textTop);
+  } else {
+    if (previousButton === btnTop) {
+      resetButton(btnTop, textExplicationRetourBouton);
+    } else {
+      resetButton(previousButton, textTop);
       expandButton(btnTop, textTop);
-    } else {
-      if (previousButton === btnTop) {
-        resetButton(btnTop, textExplicationRetourBouton);
-      } else {
-        resetButton(previousButton, textTop);
-        expandButton(btnTop, textTop);
-      }
     }
-  });
+  }
+});
 
-  btnJungle.addEventListener("click", () => {
-    if (!isExpanded) {
+btnJungle.addEventListener("click", () => {
+  if (!isExpanded) {
+    expandButton(btnJungle, textJungle);
+  } else {
+    if (previousButton === btnJungle) {
+      resetButton(btnJungle, textExplicationRetourBouton);
+    } else {
+      resetButton(previousButton, textJungle);
       expandButton(btnJungle, textJungle);
-    } else {
-      if (previousButton === btnJungle) {
-        resetButton(btnJungle, textExplicationRetourBouton);
-      } else {
-        resetButton(previousButton, textJungle);
-        expandButton(btnJungle, textJungle);
-      }
     }
-  });
+  }
+});
 
-
- // -------------------- BOUTONS ANIMATIONS --------------------
+// -------------------- BOUTONS ANIMATIONS --------------------
 
 //while hover on map gets bigger
 map.addEventListener("mouseover", () => {
@@ -174,11 +186,80 @@ map.addEventListener("mouseout", () => {
   map.style.transition = "all 0.5s";
 });
 
+const btnScore = document.getElementById("score");
+const btnBann = document.getElementById("ban");
+const btnPick = document.getElementById("pick");
 
+const titre = document.getElementById("titre");
 
+const btnTop2 = document.getElementById("top2");
+const btnSupport2 = document.getElementById("support2");
+const btnMid2 = document.getElementById("mid2");
+const btnJungle2 = document.getElementById("jungle2");
+const btnAdc2 = document.getElementById("adc2");
 
+// -------------------- DATA --------------------
+// -------------------- DATA --------------------
+// -------------------- DATA --------------------
 
+csv("/data/League of Legends Champion Stats 12.23.csv")
+  .then(function (data) {
+    //console.log(data);
+    data.map(
+      (d) => (
+        (d.BanPerc = +d.BanPerc),
+        (d.PickPerc = +d.PickPerc),
+        (d.RolePerc = +d.RolePerc),
+        (d.WinPerc = +d.WinPerc),
+        (d.Trend = +d.Trend),
+        (d.KDA = +d.KDA),
+        (d.Score = +d.Score),
+        (d.Role = d.Role)
+      )
+    );
 
+    return data;
+  })
 
+  .then(function (cleanData) {
+    console.log(cleanData);
+    // -------------------- GRAPHIQUE CAMEMBERT -------------------- //
+    createCamembert(cleanData);
+    // -------------------- GRAPHIQUE RADAR -------------------- //
+    createRadarChart(cleanData);
+    // -------------------- GRAPHIQUE BARRE -------------------- //
 
+    //si clique sur btnScore, afficher graphique score
+    /*btnScore.addEventListener("click", function () {
+      //changer titre
+      titre.innerHTML = "SCORE DES 25 MEILLEURS CHAMPIONS";
+      createBarChartScore(cleanData);
+    });
+    //si clique sur btnBann, afficher graphique bann
+    btnBann.addEventListener("click", function () {
+      titre.innerHTML = "TAUX DE BANNISSEMENT DES 25 MEILLEURS CHAMPIONS";
+      createBarChartBann(cleanData);
+    });
 
+    btnPick.addEventListener("click", function () {
+      titre.innerHTML = "TAUX DE PICK DES 25 MEILLEURS CHAMPIONS";
+      createBarChartPick(cleanData);
+    });*/
+
+    btnTop2.addEventListener("click", function () {
+      topBarchart(cleanData);
+    });
+
+    btnAdc2.addEventListener("click", function () {
+      adcBarchart(cleanData);
+    });
+    btnSupport2.addEventListener("click", function () {
+      supportBarchart(cleanData);
+    });
+    btnMid2.addEventListener("click", function () {
+      midBarchart(cleanData);
+    });
+    btnJungle2.addEventListener("click", function () {
+      jungleBarchart(cleanData);
+    });
+  });

@@ -484,7 +484,7 @@ button.stats:hover::before, button.stats:hover::after{
 #boutonStats {
   visibility: hidden;
   display: flex;
-  justify-content: space-around;
+  float: left;
 }
 
 #tableau {

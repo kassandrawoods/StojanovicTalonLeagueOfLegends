@@ -108,7 +108,7 @@ function createBarChartScore(donnees, role) {
     .enter()
     .append("text")
     .attr("x", function (d) {
-      return x(1);
+      return x(0);
     })
     .attr("y", function (d) {
       return y(d.champion) + 20;
@@ -240,7 +240,7 @@ function createBarChartBann(donnees, role) {
     .enter()
     .append("text")
     .attr("x", function (d) {
-      return x(1);
+      return x(0);
     })
     .attr("y", function (d) {
       return y(d.champion) + 20;
@@ -370,7 +370,7 @@ function createBarChartPick(donnees, role) {
     .enter()
     .append("text")
     .attr("x", function (d) {
-      return x(0.5);
+      return x(0);
     })
     .attr("y", function (d) {
       return y(d.champion) + 20;

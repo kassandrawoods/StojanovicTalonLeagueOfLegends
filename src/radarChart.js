@@ -107,7 +107,6 @@ function createRadarChart(donnees) {
     .style("stroke", "#025940")
     .style("stroke-width", "2px");
 
-  // Ajoute une ligne pour chaque catégorie
   chartGroup
     .selectAll(".radar-line")
     .data(coordinates)
@@ -124,6 +123,7 @@ function createRadarChart(donnees) {
     .style("stroke-width", "3px");
 
   // Ajoute un cercle pour chaque catégorie
+
   chartGroup
     .selectAll(".radar-point")
     .data(coordinates)

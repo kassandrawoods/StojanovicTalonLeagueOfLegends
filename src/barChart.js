@@ -494,6 +494,17 @@ function createBarCharWinrate(donnees, role) {
     })
     .attr("height", y.bandwidth());
 
+
+    function getImgSrc(championName) {
+      // Format the championName to match the image file name conventions
+      var formattedChampionName = championName.toLowerCase().replace(/ /g, '_');
+    
+      // Construct the image file path using the formatted championName and the directory name
+      var imgSrc = `/img/lol_images_champion/${formattedChampionName}.jpg`;
+    
+      return imgSrc;
+    }
+    
   //nom champion
   svg
     .selectAll("text")

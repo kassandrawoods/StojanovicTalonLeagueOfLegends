@@ -199,7 +199,7 @@ const btnMid2 = document.getElementById("mid2");
 const btnJungle2 = document.getElementById("jungle2");
 const btnAdc2 = document.getElementById("adc2");
 
-const boutonStats = document.getElementById("boutonStats");
+// const boutonStats = document.getElementById("boutonStats");
 
 // -------------------- DATA --------------------
 // -------------------- DATA --------------------
@@ -232,47 +232,147 @@ csv("/data/League of Legends Champion Stats 12.23.csv")
     createRadarChart(cleanData);
     // -------------------- GRAPHIQUE BARRE -------------------- //
 
-    //si clique sur btnScore, afficher graphique score
-    /*btnScore.addEventListener("click", function () {
-      //changer titre
-      titre.innerHTML = "SCORE DES 25 MEILLEURS CHAMPIONS";
-      createBarChartScore(cleanData);
-    });
-    //si clique sur btnBann, afficher graphique bann
-    btnBann.addEventListener("click", function () {
-      titre.innerHTML = "TAUX DE BANNISSEMENT DES 25 MEILLEURS CHAMPIONS";
-      createBarChartBann(cleanData);
-    });
-
-    btnPick.addEventListener("click", function () {
-      titre.innerHTML = "TAUX DE PICK DES 25 MEILLEURS CHAMPIONS";
-      createBarChartPick(cleanData);
-    });*/
-
     btnTop2.addEventListener("click", function () {
       const divTitre = document.getElementById("titre");
       divTitre.innerHTML = "";
       topBarchart(cleanData);
+      setActiveButton(btnTop2);
+      resetButtons();
+      btnTop2.style.opacity = 1;
+      btnMid2.style.opacity = 0.5;
+      btnJungle2.style.opacity = 0.5;
+      btnSupport2.style.opacity = 0.5;
+      btnAdc2.style.opacity = 0.5;
+      resetButtonColors();
     });
 
     btnAdc2.addEventListener("click", function () {
       const divTitre = document.getElementById("titre");
       divTitre.innerHTML = "";
       adcBarchart(cleanData);
+      setActiveButton(btnAdc2);
+      resetButtons();
+      btnAdc2.style.opacity = 1;
+      btnTop2.style.opacity = 0.5;
+      btnJungle2.style.opacity = 0.5;
+      btnSupport2.style.opacity = 0.5;
+      btnMid2.style.opacity = 0.5;
+      resetButtonColors();
     });
+
     btnSupport2.addEventListener("click", function () {
       const divTitre = document.getElementById("titre");
       divTitre.innerHTML = "";
       supportBarchart(cleanData);
+      setActiveButton(btnSupport2);
+      resetButtons();
+      btnSupport2.style.opacity = 1;
+      btnTop2.style.opacity = 0.5;
+      btnJungle2.style.opacity = 0.5;
+      btnMid2.style.opacity = 0.5;
+      btnAdc2.style.opacity = 0.5;
+      resetButtonColors();
     });
+
     btnMid2.addEventListener("click", function () {
       const divTitre = document.getElementById("titre");
       divTitre.innerHTML = "";
       midBarchart(cleanData);
+      setActiveButton(btnMid2);
+      resetButtons();
+      btnMid2.style.opacity = 1;
+      btnTop2.style.opacity = 0.5;
+      btnJungle2.style.opacity = 0.5;
+      btnSupport2.style.opacity = 0.5;
+      btnAdc2.style.opacity = 0.5;
+      resetButtonColors();
     });
+
     btnJungle2.addEventListener("click", function () {
       const divTitre = document.getElementById("titre");
       divTitre.innerHTML = "";
       jungleBarchart(cleanData);
+      setActiveButton(btnJungle2);
+      resetButtons();
+      btnJungle2.style.opacity = 1;
+      btnTop2.style.opacity = 0.5;
+      btnMid2.style.opacity = 0.5;
+      btnSupport2.style.opacity = 0.5;
+      btnAdc2.style.opacity = 0.5;
+      resetButtonColors();
     });
+
+    function setActiveButton(activeButton) {
+      // Remettre tous les boutons à leur couleur initiale
+      btnTop2.style.backgroundColor = "";
+      btnAdc2.style.backgroundColor = "";
+      btnSupport2.style.backgroundColor = "";
+      btnMid2.style.backgroundColor = "";
+      btnJungle2.style.backgroundColor = "";
+    
+      // Mettre en surbrillance le bouton actif en bleu
+      activeButton.style.backgroundColor = "rgb(11, 150, 227)";
+    }
   });
+
+
+      // Ajouter un écouteur d'événements à chaque bouton
+    btnScore.addEventListener("click", function () {
+      setActiveButton(btnScore);
+      btnBann.style.opacity = "0.5";
+      btnPick.style.opacity = "0.5";
+      btnWinRate.style.opacity = "0.5";
+      btnScore.style.opacity = "1";
+    });
+
+    btnBann.addEventListener("click", function () {
+      setActiveButton(btnBann);
+      btnScore.style.opacity = "0.5";
+      btnPick.style.opacity = "0.5";
+      btnWinRate.style.opacity = "0.5";
+      btnBann.style.opacity = "1";  
+    });
+
+    btnPick.addEventListener("click", function () {
+      setActiveButton(btnPick);
+      btnScore.style.opacity = "0.5";
+      btnBann.style.opacity = "0.5";
+      btnWinRate.style.opacity = "0.5";
+      btnPick.style.opacity = "1";
+    });
+
+    btnWinRate.addEventListener("click", function () {
+      setActiveButton(btnWinRate);
+      btnScore.style.opacity = "0.5";
+      btnBann.style.opacity = "0.5";
+      btnPick.style.opacity = "0.5";
+      btnWinRate.style.opacity = "1";
+    });
+
+    // Fonction pour mettre en surbrillance le bouton actif
+    function setActiveButton(activeButton) {
+      // Remettre tous les boutons à leur couleur initiale
+      btnScore.style.backgroundColor = "";
+      btnBann.style.backgroundColor = "";
+      btnPick.style.backgroundColor = "";
+      btnWinRate.style.backgroundColor = "";
+
+      // Mettre en surbrillance le bouton actif en bleu
+      activeButton.style.backgroundColor = "rgb(11, 150, 227)";
+    }
+
+    function resetButtons() {
+      btnScore.style.backgroundColor = "";
+      btnBann.style.backgroundColor = "";
+      btnPick.style.backgroundColor = "";
+      btnWinRate.style.backgroundColor = "";
+    }
+
+    function resetButtonColors() {
+      btnScore.style.opacity = 1;
+      btnBann.style.opacity = 1;
+      btnPick.style.opacity = 1;
+      btnWinRate.style.opacity = 1;
+    }
+
+  

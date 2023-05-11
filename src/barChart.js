@@ -539,7 +539,7 @@ function createBarCharWinrate(donnees, role) {
     });
 
   //mettre rectangle en bleu
-  d3.selectAll("rect").style("fill", "#62A632");
+  d3.selectAll("rect").style("fill", "#457324");
   //mettre texte en blanc
   d3.selectAll("text").style("fill", "white");
 }

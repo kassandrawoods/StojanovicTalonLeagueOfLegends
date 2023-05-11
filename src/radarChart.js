@@ -181,4 +181,15 @@ function createRadarChart(donnees) {
     .style("letter-spacing", "1px");
 }
 
+// Fonction qui vérifie si l'élément est visible dans la fenêtre
+function isElementInViewport(el) {
+  const rect = el.getBoundingClientRect();
+  return (
+    rect.top >= 0 &&
+    rect.left >= 0 &&
+    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+  );
+}
+
 export { createRadarChart };

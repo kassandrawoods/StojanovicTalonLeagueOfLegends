@@ -15,6 +15,9 @@ Les données sont regroupées par colonnes dans un tableau et sont au format csv
 </p>
 <h1>Wireframe</h1>
 [wireframe_lol.pdf](https://github.com/kassandrawoods/StojanovicTalonLeagueOfLegends/files/10989208/wireframe_lol.pdf)
+<h1>Commandes</h1>
+<p>npm install</p>
+<p>npm run dev</p>
 
 
 
